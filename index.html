@@ -4,112 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <stript type="module"></stript>
+    <stript type="module" src="main.js"></stript>
     <title>Foodtruck: Yum yum gim me sum</title>
 </head>
 <body>
-    <div class="container">
+
+<div class="container">
 
 
-      <!-- Menu -->
-      <div class="menu">
+    <!---- Menu ---->   
+    <div class="menu">
+
+    
+
         <h2>MENY</h2>
-        <div class="menu-item">
-          <span class="item-name">KARLSTAD</span>
-          <span class="item-price">9 SEK</span>
-          <p>kantarell, scharlottenlök, morot, bladpersilja</p>
-        </div>
-        <div class="menu-item">
-          <span class="item-name">BANGKOK</span>
-          <span class="item-price">9 SEK</span>
-          <p>morot, salladslök, chili, kokos, lime, koriander</p>
-        </div>
-        <div class="menu-item">
-            <span class="item-name">NO CHI MINH</span>
-            <span class="item-price">9 SEK</span>
-            <p>kål, salladslök, chili, vitlök, ingefära, tofu</p>
-          </div>
-          <div class="menu-item">
-            <span class="item-name">PARIS</span>
-            <span class="item-price">9 SEK</span>
-            <p>kål, chevre, honung, basilika, valnötspasta</p>
-          </div>
-          <div class="menu-item">
-            <span class="item-name">OAXACA</span>
-            <span class="item-price">9 SEK</span>
-            <p>majs, tomat, rostade ärtor, vitlök, lime</p>
-          </div>
-        <div class="menu-subheading">DIPSÅS</div>
+
+
+        <div class="wontons">
+            <div class="item">
+                <button class="food-button">
+                    <div class="name-price">
+                        <p class="item-name">KARLSTAD</p>
+                        <div class="line"></div>
+                        <p class="item-price">9 SEK</p>
+                    </div>
+                    <p class="ingredients">kantarell, scharlottenlök, morot, bladpersilja</p>
+                </button>
+            </div>
+            <div class="separator-line"></div>
+            <div class="item">
+                <button class="food-button">
+                    <div class="name-price">
+                        <p class="item-name">BANGKOK</p>
+                        <div class="line"></div>
+                        <p class="item-price">9 SEK</p>
+                    </div>
+                    <p class="ingredients">morot, salladslök, chili, kokos, lime, koriander</p>
+                </button>
+            </div>
+            <div class="separator-line"></div>
+            <div class="item">
+                <button class="food-button">
+                    <div class="name-price">
+                        <p class="item-name">Ho Chi Minh</p>
+                        <div class="line"></div>
+                        <p class="item-price">9 SEK</p>
+                    </div>
+                    <p class="ingredients">kål, salladslök, chili, vitlök, ingefära, tofu</p>
+                </button>
+            </div>
+            <div class="separator-line"></div>
+            <div class="item">
+                <button class="food-button">
+                    <div class="name-price">
+                        <p class="item-name">PARIS</p>
+                        <div class="line"></div>
+                        <p class="item-price">9 SEK</p>
+                    </div>
+                    <p class="ingredients">kål, chevré, honung, basilika, valnötspasta</p>
+                </button>
+            </div>
+            <div class="separator-line"></div>
+            <div class="item">
+                <button class="food-button">
+                    <div class="name-price">
+                        <p class="item-name">Oaxaca</p>
+                        <div class="line"></div>
+                        <p class="item-price">9 SEK</p>
+                    </div>
+                    <p class="ingredients">majs, tomat, rostade ärtor, vitlök, lime</p>
+                </button>
+            </div>
+
+        
+
+        <!-------Dipmeny----->
         <div class="dips">
-          <button>sweet chili</button>
-          <button>wonton std</button>
-          <button>sweet & sour</button>
-          <button>Hot mango</button>
-          <button>Chili mayo</button>
-          <button>guacamole</button>
+            <div class="name-price">
+                <p class="item-name">DIPSÅS</p>
+                <div class="line"></div>
+                <p class="item-price">19 SEK</p>
+            </div>
+        
+            <div class="frame10">
+                <button class="add-dip" data-name="sweet chili" data-price="19">Sweet Chili</button>
+                <button class="add-dip" data-name="wonton std" data-price="19">Wonton Std</button>
+                <button class="add-dip" data-name="sweet & sour" data-price="19">Sweet & Sour</button>
+                <button class="add-dip" data-name="hot mango" data-price="19">Hot Mango</button>
+                <button class="add-dip" data-name="guacamole" data-price="19">Guacamole</button>
+            </div>
+            
         </div>
-        <div class="menu-subheading">DRICKA</div>
+
+        <!-------Dricka----->
         <div class="drinks">
-          <button>Fanta Orange</button>
-          <button>Fanta Exotic</button>
-          <button>Coca Cola</button>
-          <button>Sprite</button>
-          <button>LOKA Granatäpple</button>
-          <button>LOKA Citron</button>
+            <div class="name-price">
+                <p class="item-name">DRYCK</p>
+                <div class="line"></div>
+                <p class="item-price">19 SEK</p>
+            </div>
+
+            <div class="frame7">
+                <button class="drink-button" data-name="Fanta Orange" data-price="19 SEK">Fanta Orange</button>
+                <button class="drink-button" data-name="Fanta Exotic" data-price="20 SEK">Fanta Exotic</button>
+                <button class="drink-button" data-name="Coca Cola" data-price="19 SEK">Coca Cola</button>
+                <button class="drink-button" data-name="Sprite" data-price="19 SEK">Sprite</button>
+                <button class="drink-button" data-name="LOKA Granatäpple" data-price="19 SEK">LOKA Granatäpple</button>
+                <button class="drink-button" data-name="LOKA Citrus" data-price="19 SEK">LOKA Citrus</button>
+            </div>
         </div>
-      </div>
-  
-      <!-- Cart Section -->
-      <div class="cart">
-        <h2>CART</h2>
-        <div class="cart-item">
-          <span>KARLSTAD</span>
-          <span>27 SEK</span>
-          <span>3 stycken</span>
+    
+
+        <div class="cart">
+                <div class="iteams">
+                    
+                </div>
         </div>
-        <div class="cart-item">
-          <span>HO CHI MINH</span>
-          <span>18 SEK</span>
-          <span>2 stycken</span>
-        </div>
-        <div class="cart-item">
-            <span>KINGSTON</span>
-            <span>18 SEK</span>
-            <span>2 stycken</span>
-          </div>
-          <div class="cart-item">
-            <span>SWEET CHILI DIP</span>
-            <span>19 SEK</span>
-            <span>1 stycken</span>
-          </div>
-          <div class="cart-item">
-            <span>GUACAMOLE</span>
-            <span>19 SEK</span>
-            <span>1 stycken</span>
-          </div>
-          <div class="cart-item">
-            <span>FANTA ORANGE</span>
-            <span>19 SEK</span>
-            <span>1 stycken</span>
-          </div>
-          
-        <div class="cart-footer">
-          <div class="total">TOTAL: 120 SEK</div>
-          <button class="btn">Take my money!</button>
-        </div>
-      </div>
-  
-      <!-- CTA Section -->
-      <div class="cta">
-        <div class="cta-box">
-          <img src="a087f7ec21b4c797b479c102d8b7d9f8.png" alt="Food Image">
-          <h2>DINA WONTONS TILLAGAS!</h2>
-          <p>ETA 5 MIN</p>
-          <button>SE KVITTO</button>
-          <button>GÖR EN NY BESTÄLLNING</button>
-        </div>
-      </div>
     </div>
-  </body>
-  </html>
+    
+    
+  
+      
+          
+        
+  
+        <!----CTA Section---->
+        <div class="cta">
+            <div class="cta-box">
+                <img src="a087f7ec21b4c797b479c102d8b7d9f8.png" alt="Food Image">
+                <h2>DINA WONTONS TILLAGAS!</h2>
+                <p>ETA 5 MIN</p>
+                <button>SE KVITTO</button>
+                <button>GÖR EN NY BESTÄLLNING</button>
+            </div>
+        </div>
+</div>
+</body> 
 </html>
+
+
+
+
+

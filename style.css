@@ -1,158 +1,146 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
-  }
-  
-  .menu, .cart, .cta {
-    width: 30%;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
 
-  .menu
-  {
-    background-color: rgba(72, 144, 120, 1);
-  }
-  
-  h2 {
-    margin-top: 0;
-    font-size: 1.5rem;
-    color: white;
-  }
+.container
+{
 
-  .menu-item {
     display: flex;
-    background-color: rgba(96, 88, 88, 1);
-    justify-content: space-between; /* Lägger 'PARIS' och '9 SEK' på motsatta sidor */
-    align-items: center; /* Justera vertikalt så att de ligger på samma linje */
-    padding: 10px; /* Lite padding runt innehållet */
-    border-bottom: 1px dotted #ffffff; /* Dotted border under menyalternativet */
-  }
-  
-  .item-name-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     width: 100%;
-    border-bottom: 1px dotted #ffffff; /* Punktlinje mellan namn och pris */
-    padding-bottom: 4px; /* Mellanrum från linjen */
-  }
-  
-  
-  .menu-item p {
-    font-size: 14px; /* Storlek på beskrivning */
-    margin-top: 4px; /* Lite utrymme ovanför p-taggen */
-    margin-left: 0; /* Ta bort eventuell vänstermarginal från p-taggen */
-  }
-
-  .cart-item
-  {
-    margin-bottom: 15px;
-  }
-  
-  .menu-item span, .cart-item span
-  {
-    display: block;
-  }
-  
-  .menu-subheading 
-  {
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 8px;
-    padding-left: 16px;
-  }
-  
-  .dips, .drinks {
-    display: flex;
-    flex-wrap: wrap; /* Tillåter knappar att radbrytas */
-    gap: 8px; /* Mellanrum mellan knappar */
-    padding: 16px; /* Inre utrymme */
-    border-radius: 8px 0px 0px 0px;
-    background-color: #353131; /* Bakgrundsfärg */
-    opacity: 1; /* Synlighet */
-  }
-  
-  button {
-    /* Knappstil */
-    background: #464646;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-  
-.cart-footer {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px; /* Justera padding för att få rätt avstånd */
-        gap: 16px; /* Avstånd mellan elementen i kolumn */
-        
-        position: absolute;
-        width: 358px; /* Bredde för boxen */
-        height: 171px; /* Höjd för boxen */
-        left: 16px; /* Placering från vänster */
-        top: 657px; /* Placering från toppen */
-        background-color: #fff; /* Lägg till bakgrundsfärg om det behövs */
-        border-radius: 8px; /* Lägg till rundade hörn om du vill */
+    
 }
- 
-    .total {
-    font-size: 16px; /* Justera fontstorlek för totalen */
-    font-weight: bold; /* Fet stil för totalen */
-    color: #333; /* Färg på texten */
-    }
 
-  .btn {
-    width: 100%; /* Få knappen att fylla hela bredden */
-    padding: 12px;
-    background-color: #007bff; /* Blå bakgrundsfärg */
-    color: #fff; /* Vit textfärg */
-    border: none; /* Ta bort standard kantlinjer */
-    border-radius: 8px; /* Rundade hörn på knappen */
-    font-size: 16px;
-    cursor: pointer; /* Gör knappen klickbar */
-    }
-  
-
-  
-  .cta-box {
-    text-align: center;
-    background: #605858
-    }
-  
-  .cta-box img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    }
-  
-  .cta-box button {
-    width: 358px; /* Fixed width */
-    height: auto; /* Dynamic height (hug content) */
-    padding: 20px;
-    margin: 16px auto; /* Gap between buttons */
-    background-color: #333;
+.menu h2
+{
     color: white;
+}
+
+.menu 
+{ 
+margin: 20px auto; 
+padding: 20px; 
+border-radius: 10px;
+position: relative;
+width: 390px;
+height: 1068px;
+overflow-y: scroll;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+background-color: rgba(72, 144, 120, 1);
+}  
+
+.food-button
+{
+background-color: rgba(96, 88, 88, 1);
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 10px;
+cursor: pointer;
+width: 100%;
+text-align: left; 
+} 
+
+.add-dip, .drink-button
+{
+display: flex; 
+flex-direction: row;  
+padding: 8px 12px;
+gap: 10px;
+width: 108px;
+height: 33px;
+background: rgba(241, 240, 236, 0.24);
+border-radius: 4px;
+border: none;
+cursor: pointer;
+color: rgb(244, 243, 241);
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.name-price
+{ 
+display: flex;
+justify-content: space-between;
+align-items: center; 
+} 
+
+.item-name, .item-price
+{ 
+width: 74px; 
+height: 26px;
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 22px;
+line-height: 26px;
+color: rgba(244, 243, 241, 0.94);
+} 
+
+.line
+{ 
+flex-grow: 1;
+border-bottom: 1px dotted #fff;
+margin: 0 5px; 
+} 
+
+.ingredients
+{ 
+font-size: 12px;
+color: #d0e0d9; 
+}
+
+.frame10, .frame7
+{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 16px;
+    gap: 10px;
+    justify-content: center;
+    width: 358px;
+    height: 164px;
+    border-radius: 8px; 
+}
+
+.dips, .drinks
+{
+    background-color: rgba(96, 88, 88, 1);
+    color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
-    text-align: center;
-    opacity: 1; /* Set opacity to visible */
-    font-size: 1rem;
-    }
+    width: 100%; 
+}
+
+button:active 
+{
+    background-color: rgba(53, 49, 49, 1); 
+}
+
+
+
+/* order  */
+
+.cart 
+{
+    width: 390px;
+    height: 844px;
+    background: #EEEEEE;
+}
+
+.items
+{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+position: absolute;
+width: 358px;
+height: 462.2px;
+left: 16px;
+top: 111px;
+border-radius: 4px;
+}
