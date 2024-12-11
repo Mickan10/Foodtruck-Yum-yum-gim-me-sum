@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <stript type="module" src="main.js"></stript>
+    <script type="module" src="main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Foodtruck: Yum yum gim me sum</title>
 </head>
 <body>
@@ -13,14 +16,10 @@
 
 
     <!---- Menu ---->   
-    <div class="menu">
-
-    
+    <section class="menu">
 
         <h2>MENY</h2>
 
-
-        <div class="wontons">
             <div class="item">
                 <button class="food-button">
                     <div class="name-price">
@@ -31,7 +30,7 @@
                     <p class="ingredients">kantarell, scharlottenlök, morot, bladpersilja</p>
                 </button>
             </div>
-            <div class="separator-line"></div>
+            
             <div class="item">
                 <button class="food-button">
                     <div class="name-price">
@@ -42,7 +41,7 @@
                     <p class="ingredients">morot, salladslök, chili, kokos, lime, koriander</p>
                 </button>
             </div>
-            <div class="separator-line"></div>
+            
             <div class="item">
                 <button class="food-button">
                     <div class="name-price">
@@ -53,7 +52,7 @@
                     <p class="ingredients">kål, salladslök, chili, vitlök, ingefära, tofu</p>
                 </button>
             </div>
-            <div class="separator-line"></div>
+            
             <div class="item">
                 <button class="food-button">
                     <div class="name-price">
@@ -64,7 +63,7 @@
                     <p class="ingredients">kål, chevré, honung, basilika, valnötspasta</p>
                 </button>
             </div>
-            <div class="separator-line"></div>
+            
             <div class="item">
                 <button class="food-button">
                     <div class="name-price">
@@ -78,66 +77,82 @@
 
         
 
-        <!-------Dipmeny----->
-        <div class="dips">
-            <div class="name-price">
-                <p class="item-name">DIPSÅS</p>
-                <div class="line"></div>
-                <p class="item-price">19 SEK</p>
-            </div>
-        
-            <div class="frame10">
-                <button class="add-dip" data-name="sweet chili" data-price="19">Sweet Chili</button>
-                <button class="add-dip" data-name="wonton std" data-price="19">Wonton Std</button>
-                <button class="add-dip" data-name="sweet & sour" data-price="19">Sweet & Sour</button>
-                <button class="add-dip" data-name="hot mango" data-price="19">Hot Mango</button>
-                <button class="add-dip" data-name="guacamole" data-price="19">Guacamole</button>
-            </div>
-            
-        </div>
-
-        <!-------Dricka----->
-        <div class="drinks">
-            <div class="name-price">
-                <p class="item-name">DRYCK</p>
-                <div class="line"></div>
-                <p class="item-price">19 SEK</p>
-            </div>
-
-            <div class="frame7">
-                <button class="drink-button" data-name="Fanta Orange" data-price="19 SEK">Fanta Orange</button>
-                <button class="drink-button" data-name="Fanta Exotic" data-price="20 SEK">Fanta Exotic</button>
-                <button class="drink-button" data-name="Coca Cola" data-price="19 SEK">Coca Cola</button>
-                <button class="drink-button" data-name="Sprite" data-price="19 SEK">Sprite</button>
-                <button class="drink-button" data-name="LOKA Granatäpple" data-price="19 SEK">LOKA Granatäpple</button>
-                <button class="drink-button" data-name="LOKA Citrus" data-price="19 SEK">LOKA Citrus</button>
-            </div>
-        </div>
-    
-
-        <div class="cart">
-                <div class="iteams">
-                    
+            <!-------Dipmeny----->
+            <div class="dips">
+                <div class="name-price">
+                    <p class="item-name">DIPSÅS</p>
+                    <div class="line"></div>
+                    <p class="item-price">19 SEK</p>
                 </div>
-        </div>
-    </div>
+            
+                <div class="frame10">
+                    <button class="add-dip" data-name="sweet chili" data-price="19">Sweet Chili</button>
+                    <button class="add-dip" data-name="wonton std" data-price="19">Wonton Std</button>
+                    <button class="add-dip" data-name="sweet & sour" data-price="19">Sweet & Sour</button>
+                    <button class="add-dip" data-name="hot mango" data-price="19">Hot Mango</button>
+                    <button class="add-dip" data-name="guacamole" data-price="19">Guacamole</button>
+                </div>    
+            </div>
+
+            <!-------Dricka----->
+            <div class="drinks">
+                <div class="name-price">
+                    <p class="item-name">DRYCK</p>
+                    <div class="line"></div>
+                    <p class="item-price">19 SEK</p>
+                </div>
+
+                <div class="frame7">
+                    <button class="drink-button" data-name="Fanta Orange" data-price="19 SEK">Fanta Orange</button>
+                    <button class="drink-button" data-name="Fanta Exotic" data-price="20 SEK">Fanta Exotic</button>
+                    <button class="drink-button" data-name="Coca Cola" data-price="19 SEK">Coca Cola</button>
+                    <button class="drink-button" data-name="Sprite" data-price="19 SEK">Sprite</button>
+                    <button class="drink-button" data-name="LOKA Granatäpple" data-price="19 SEK">LOKA Granatäpple</button>
+                    <button class="drink-button" data-name="LOKA Citrus" data-price="19 SEK">LOKA Citrus</button>
+                </div>
+            </div> 
+    </section>
+
+
+        <section class="orderb">
+        <!-----orderbekräftelsen------>
+            <div class="cart">
+                <div class="iteams">
+                    <!----lägga produkter via js---->
+                </div>
+                    <div class="i-footer">
+                        <p class="total-text">TOTAL</p>
+                        <p class="total-details">inkl 20% moms</p>
+                        <p class="total-price">120 SEK</p>
+
+                        <button class="take-my-money">TAKE MY MONEY!</button>
+                    </div>
+            </div>
+        </section>
+    
     
     
   
       
           
         
-  
-        <!----CTA Section---->
-        <div class="cta">
-            <div class="cta-box">
-                <img src="a087f7ec21b4c797b479c102d8b7d9f8.png" alt="Food Image">
-                <h2>DINA WONTONS TILLAGAS!</h2>
-                <p>ETA 5 MIN</p>
-                <button>SE KVITTO</button>
-                <button>GÖR EN NY BESTÄLLNING</button>
-            </div>
-        </div>
+        <section class="cta-section">
+            <!----CTA---->
+            <div class="cta">
+                <div class="cta-box">
+                    <h2>DINA WONTONS TILLAGAS!</h2>
+                    <h3>ETA 5 MIN</h3>
+                    <h4>#4kjwsdf2</h4>
+
+                    <div class="footer">
+                        <button class="kvitto">SE KVITTO</button>
+                        <button class="order">GÖR EN NY BESTÄLLNING</button>
+                    </div>
+
+                </div>
+            </div>        
+        </section>
+
 </div>
 </body> 
 </html>

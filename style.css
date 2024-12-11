@@ -2,29 +2,61 @@
 .container
 {
 
+    max-width: 400px;
+    margin: 0 auto; 
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    gap: 20px;
     
 }
 
 .menu h2
 {
-    color: white;
+width: 104px;
+height: 24px;
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 38px;
+display: flex;
+align-items: center;
+text-transform: uppercase;
+color: rgba(244, 243, 241, 0.94);
+text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+flex: none;
+order: 0;
+flex-grow: 0;
 }
 
 .menu 
-{ 
-margin: 20px auto; 
-padding: 20px; 
-border-radius: 10px;
-position: relative;
-width: 390px;
-height: 1068px;
-overflow-y: scroll;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-background-color: rgba(72, 144, 120, 1);
-}  
+{
+    margin: 20px auto; 
+    padding: 20px; 
+    border-radius: 10px;
+    position: relative;
+    width: 390px;
+    height: auto; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(72, 144, 120, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+} 
+
+.item
+{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 19px;
+gap: 10px;
+width: 358px;
+height: 89px;
+border-radius: 8px;
+align-self: stretch;
+}
 
 .food-button
 {
@@ -81,26 +113,38 @@ color: rgba(244, 243, 241, 0.94);
 .line
 { 
 flex-grow: 1;
-border-bottom: 1px dotted #fff;
-margin: 0 5px; 
+border-bottom: 2px dotted #fff;
 } 
 
 .ingredients
 { 
-font-size: 12px;
-color: #d0e0d9; 
+width: 326px;
+height: 23px;
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+text-transform: lowercase;
+color: rgba(244, 243, 241, 0.94);
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+border-bottom: 1px dashed rgba(241, 240, 236, 0.24);
 }
+
+
 
 .frame10, .frame7
 {
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    padding: 16px;
     gap: 10px;
     justify-content: center;
     width: 358px;
-    height: 164px;
     border-radius: 8px; 
 }
 
@@ -108,14 +152,26 @@ color: #d0e0d9;
 {
     background-color: rgba(96, 88, 88, 1);
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
+    padding: 16px;
     cursor: pointer;
-    width: 100%; 
+    width: 358px;
+    gap: 10px;
+    border-radius: 8px;
+    text-align: center;
+    height: 164px;
+}
+
+.dips
+{
+    margin-top: 40px;
 }
 
 button:active 
+{
+    background-color: rgba(53, 49, 49, 1); 
+}
+
+button:hover
 {
     background-color: rgba(53, 49, 49, 1); 
 }
@@ -143,4 +199,184 @@ height: 462.2px;
 left: 16px;
 top: 111px;
 border-radius: 4px;
+}
+
+.i-footer
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    position: absolute;
+    width: 358px;
+    height: 170px;
+    left: 16px;
+    top: 658px;
+    background-color: (96, 88, 88, 1);
+
+}
+
+.take-my-money 
+{
+    width: 268px;
+    height: 29px;
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: rgba(244, 243, 241, 0.94);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+
+/* CTA  */
+
+.cta
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    position: relative;
+    width: 390px;
+    height: 844px;
+    background: #605858;
+    color: white;
+    
+}
+
+.cta-box 
+{
+    
+    width: 390px;
+    height: 362px;
+    left: 0px;
+    top: 97px;
+    background: url('a087f7ec21b4c797b479c102d8b7d9f8.png') no-repeat center;
+    background-size: cover; 
+}
+
+.cta h2
+{
+    font-family: Fira Sans;
+font-size: 32px;
+font-weight: 700;
+line-height: 38.4px;
+text-align: center;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+.cta h3
+{
+font-family: Fira Sans;
+font-size: 26px;
+font-weight: 500;
+line-height: 31.2px;
+text-align: center;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+.cta h4
+{
+width: 326px;
+height: 24px;
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: uppercase;
+color: #EEEEEE;
+}
+
+
+.footer
+{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+position: absolute;
+width: 358px;
+height: 170px;
+left: 16px;
+top: 658px;
+background-color: (96, 88, 88, 1);
+}
+
+.footer button
+{
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 24px 16px;
+gap: 10px;
+width: 358px;
+height: 77px;
+opacity: 0.8;
+border: 2px solid rgba(244, 243, 241, 0.94);
+border-radius: 4px;
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.kvitto
+{
+width: 110px;
+height: 29px;
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+text-transform: uppercase;
+color: rgba(244, 243, 241, 0.94);
+text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+
+.order
+{
+width: 268px;
+height: 29px;
+font-family: 'Fira Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+text-transform: uppercase;
+color: rgba(244, 243, 241, 0.94);
+text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+flex: none;
+order: 0;
+flex-grow: 0;
 }
