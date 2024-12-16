@@ -14,11 +14,16 @@
 
 <div class="container">
 
-
     <!---- Menu ---->   
-    <section class="menu">
+    <section id="menu" class="menu">
 
-        <h2>MENY</h2>
+        <!--cartknapp-->
+        <button class="btn">
+            <div class="upp"></div>
+            <div class="ner"></div>
+        </button>
+
+            <h2>MENY</h2>
 
             <div class="item">
                 <button class="food-button">
@@ -114,38 +119,37 @@
     </section>
 
 
-        <section class="orderb">
-        <!-----orderbekräftelsen------>
-            <div class="cart">
-                <div class="iteams">
-                    <!----lägga produkter via js---->
-                </div>
-                    <div class="i-footer">
-                        <p class="total-text">TOTAL</p>
-                        <p class="total-details">inkl 20% moms</p>
-                        <p class="total-price">120 SEK</p>
-
-                        <button class="take-my-money">TAKE MY MONEY!</button>
-                    </div>
-            </div>
-        </section>
-    
-    
-    
-  
-      
-          
+        <!-----Cart-sidan------>
+        <section id="orderb" class="orderb" style="display: none;">
         
-        <section class="cta-section">
-            <!----CTA---->
+        <div class="cart">
+            <button class="btn-n">*</button>
+            <div class="items">
+                <!------läggs i js----->
+            </div>
+            <div class="total">
+                <span class="total">TOTALT</span>
+                <span>inkl 20% moms</span>
+                <span class="price">0 SEK</span>
+            </div>
+            <button class="take-my-money">TAKE MY MONEY!</button>
+        </div>
+        </section>
+
+
+        
+        <!----CTA-sidan---->
+        <section id="cta-section" class="cta-section" style="display: none;">
+
             <div class="cta">
                 <div class="cta-box">
+                    <img src="a087f7ec21b4c797b479c102d8b7d9f8.png">
                     <h2>DINA WONTONS TILLAGAS!</h2>
                     <h3>ETA 5 MIN</h3>
                     <h4>#4kjwsdf2</h4>
 
                     <div class="footer">
-                        <button class="kvitto">SE KVITTO</button>
+                        <button class="kvitto">UR FUNKTION</button>
                         <button class="order">GÖR EN NY BESTÄLLNING</button>
                     </div>
 

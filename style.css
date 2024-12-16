@@ -1,61 +1,97 @@
-
 .container
 {
 
-    max-width: 400px;
+    width: 390px;
     margin: 0 auto; 
-    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
     
+}
+
+.btn, .btn-n
+{
+    position: absolute;
+    filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
+    width: 54px;
+    height: 54px;
+    left: 360px;
+    top: 17px;
+    background: rgba(237, 237, 237, 0.94);
+    border-radius: 4px;
+    border: none;
+    color: rgba(96, 88, 88, 1);
+}
+
+.upp, .ner
+{ 
+    box-sizing: border-box;
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 10px; } 
+
+.upp 
+{
+    border: 2px solid #222222;
+    border-radius: 4px;
+    color: rgba(96, 88, 88, 1); 
+}
+
+
+.ner 
+{  
+    border-radius: 0 0 8px 8px;
+    border: 2px solid #222222;
+    color: rgba(96, 88, 88, 1); 
 }
 
 .menu h2
 {
-width: 104px;
-height: 24px;
-font-family: 'Fira Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 32px;
-line-height: 38px;
-display: flex;
-align-items: center;
-text-transform: uppercase;
-color: rgba(244, 243, 241, 0.94);
-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-flex: none;
-order: 0;
-flex-grow: 0;
+    width: 104px;
+    height: 24px;
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: rgba(244, 243, 241, 0.94);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 40px;
+    left: 45px;
 }
 
 .menu 
 {
-    margin: 20px auto; 
+    margin: auto; 
+    margin-top: 10px;
     padding: 20px; 
     border-radius: 10px;
     position: relative;
-    width: 390px;
-    height: auto; 
+    width: 100%;
+    height: 1068px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgba(72, 144, 120, 1);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0px;
+    justify-content: center;
+    align-items: center;
 } 
 
 .item
 {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 19px;
-gap: 10px;
-width: 358px;
+width: 340px;
 height: 89px;
-border-radius: 8px;
-align-self: stretch;
+padding: 16px 0px 0px 0px;
+border-radius: 8px 8px 0px 0px;
+opacity: 1px;
+
 }
 
 .food-button
@@ -64,10 +100,9 @@ background-color: rgba(96, 88, 88, 1);
 color: #fff;
 border: none;
 border-radius: 5px;
-padding: 10px;
 cursor: pointer;
-width: 100%;
 text-align: left; 
+margin-top: 10px;
 } 
 
 .add-dip, .drink-button
@@ -86,8 +121,8 @@ color: rgb(244, 243, 241);
 font-family: 'Fira Sans';
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
-line-height: 17px;
+font-size: 13px;
+line-height: 10px;
 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
@@ -95,18 +130,16 @@ text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 { 
 display: flex;
 justify-content: space-between;
-align-items: center; 
-} 
-
-.item-name, .item-price
-{ 
-width: 74px; 
-height: 26px;
+align-items: center;
 font-family: 'Fira Sans';
 font-style: normal;
 font-weight: 600;
 font-size: 22px;
 line-height: 26px;
+width: Fill (326px)px;
+height: Hug (26px)px;
+gap: 8px;
+opacity: 0px;
 color: rgba(244, 243, 241, 0.94);
 } 
 
@@ -118,24 +151,20 @@ border-bottom: 2px dotted #fff;
 
 .ingredients
 { 
-width: 326px;
-height: 23px;
 font-family: 'Fira Sans';
 font-style: normal;
 font-weight: 500;
+width: 326px;
+height: 23px;
 font-size: 14px;
-line-height: 17px;
+line-height: 16.8px;
 text-transform: lowercase;
 color: rgba(244, 243, 241, 0.94);
 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 flex: none;
 order: 1;
-align-self: stretch;
-flex-grow: 0;
-border-bottom: 1px dashed rgba(241, 240, 236, 0.24);
+margin-bottom: 8px;
 }
-
-
 
 .frame10, .frame7
 {
@@ -154,16 +183,21 @@ border-bottom: 1px dashed rgba(241, 240, 236, 0.24);
     color: #fff;
     padding: 16px;
     cursor: pointer;
-    width: 358px;
-    gap: 10px;
+    width: 390px;
+    gap: 24px;
     border-radius: 8px;
     text-align: center;
     height: 164px;
+    padding: 0px 16px 0px 16px;
+    border-radius: 8px;
+    opacity: 0px;
+
 }
 
 .dips
 {
-    margin-top: 40px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 button:active 
@@ -178,74 +212,126 @@ button:hover
 
 
 
-/* order  */
-
-.cart 
-{
-    width: 390px;
-    height: 844px;
-    background: #EEEEEE;
+/* order */
+.orderb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(238, 238, 238, 1);
+    height: 100vh;
 }
 
-.items
-{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-position: absolute;
-width: 358px;
-height: 462.2px;
-left: 16px;
-top: 111px;
-border-radius: 4px;
-}
-
-.i-footer
-{
+.cart {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
+    align-items: center;
     gap: 16px;
-    position: absolute;
-    width: 358px;
-    height: 170px;
-    left: 16px;
-    top: 658px;
-    background-color: (96, 88, 88, 1);
-
+    width: 390px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.take-my-money 
+.items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.order-item {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd
+}
+
+.order-items .item-name 
 {
-    width: 268px;
-    height: 29px;
-    font-family: 'Fira Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.order-item .item-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+.quantity {
     display: flex;
     align-items: center;
+    gap: 8px;
+}
+
+.quantity button {
+    background-color: #ddd;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.quantity button:hover {
+    background-color: #bbb;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d3d3d3;
+    color: #000;
+    padding: 20px;
+    width: 100%;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.total span {
+    display: block;
+}
+
+.take-my-money {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border: none;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase;
-    color: rgba(244, 243, 241, 0.94);
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.take-my-money:hover {
+    background-color: #000;
 }
 
 
-
-/* CTA  */
+/* CTA */
 
 .cta
 {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
+    align-items: center;
+    justify-content: center;
     gap: 16px;
     position: relative;
     width: 390px;
@@ -257,53 +343,51 @@ border-radius: 4px;
 
 .cta-box 
 {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     width: 390px;
     height: 362px;
     left: 0px;
     top: 97px;
-    background: url('a087f7ec21b4c797b479c102d8b7d9f8.png') no-repeat center;
-    background-size: cover; 
 }
 
-.cta h2
+.cta img 
 {
-    font-family: Fira Sans;
-font-size: 32px;
-font-weight: 700;
-line-height: 38.4px;
-text-align: center;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
-
+    max-width: 100%;
+    height: auto;
+    margin-top: -200px;
 }
 
-.cta h3
-{
-font-family: Fira Sans;
-font-size: 26px;
-font-weight: 500;
-line-height: 31.2px;
-text-align: center;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
 
+.cta h2,
+.cta h3,
+.cta h4 
+{
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
 }
 
-.cta h4
-{
-width: 326px;
-height: 24px;
-font-family: 'Fira Sans';
-font-style: normal;
-font-weight: 500;
-font-size: 15px;
-line-height: 18px;
-display: flex;
-align-items: center;
-text-align: center;
-text-transform: uppercase;
-color: #EEEEEE;
+.cta h2 {
+    font-size: 32px;
+    line-height: 38.4px;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.cta h3 {
+    font-size: 26px;
+    line-height: 31.2px;
+}
+
+.cta h4 {
+    font-size: 15px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #eeeeee;
 }
 
 
@@ -311,7 +395,7 @@ color: #EEEEEE;
 {
 display: flex;
 flex-direction: column;
-align-items: flex-start;
+align-items: center;
 padding: 0px;
 gap: 16px;
 position: absolute;
@@ -353,6 +437,7 @@ font-size: 24px;
 line-height: 29px;
 display: flex;
 align-items: center;
+background-color: #605858;
 text-transform: uppercase;
 color: rgba(244, 243, 241, 0.94);
 text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
@@ -374,6 +459,7 @@ line-height: 29px;
 display: flex;
 align-items: center;
 text-transform: uppercase;
+background-color: #605858;
 color: rgba(244, 243, 241, 0.94);
 text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 flex: none;
