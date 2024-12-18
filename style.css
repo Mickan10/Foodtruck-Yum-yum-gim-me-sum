@@ -6,10 +6,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    position: relative; 
 }
 
-.btn, .btn-n
+.btn
+{
+    position: absolute;
+    filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
+    width: 54px;
+    height: 54px;
+    left: 360px;
+    top: 17px;
+    background: rgba(237, 237, 237, 0.94);
+    border-radius: 4px;
+    border: none;
+    color: rgba(96, 88, 88, 1);
+}
+
+.btn-n
 {
     position: absolute;
     filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
@@ -30,7 +44,8 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    padding: 10px; } 
+    padding: 10px; 
+} 
 
 .upp 
 {
@@ -183,7 +198,7 @@ margin-bottom: 8px;
     color: #fff;
     padding: 16px;
     cursor: pointer;
-    width: 390px;
+    width: 100%;
     gap: 24px;
     border-radius: 8px;
     text-align: center;
@@ -219,6 +234,7 @@ button:hover
     align-items: center;
     background-color: rgba(238, 238, 238, 1);
     height: 100vh;
+    position: relative
 }
 
 .cart {
@@ -231,14 +247,17 @@ button:hover
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
 .items {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 15px;
+    margin-bottom: 46px;
     color: #333;
 }
 
@@ -246,7 +265,7 @@ button:hover
     display: flex;
     flex-direction: column;
     padding: 8px 0;
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #ddd;
 }
 
 .order-items .item-name 
@@ -288,41 +307,41 @@ button:hover
 }
 
 .total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #d3d3d3;
-    color: #000;
-    padding: 20px;
-    width: 100%;
+    background-color: #605858; 
+    color: rgba(244, 243, 241, 0.94);
+    padding: 24px;
+    border: 2px solid rgba(244, 243, 241, 0.94);
     font-family: 'Fira Sans', sans-serif;
+    font-size: 24px;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
 
-.total span {
-    display: block;
+.total-title {
+    font-size: 28px;
+}
+
+.total-subtitle {
+    font-size: 18px; 
 }
 
 .take-my-money {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    border: none;
+    background-color: #605858;
+    color: rgba(244, 243, 241, 0.94);
+    padding: 24px;
+    border: 2px solid rgba(244, 243, 241, 0.94);
     font-family: 'Fira Sans', sans-serif;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
-    width: 100%;
+    width: 358px;
     text-align: center;
+    border-radius: 4px;
 }
-
-.take-my-money:hover {
-    background-color: #000;
-}
-
 
 /* CTA */
 
@@ -362,8 +381,7 @@ button:hover
 
 
 .cta h2,
-.cta h3,
-.cta h4 
+.cta h3
 {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 500;
@@ -381,13 +399,6 @@ button:hover
 .cta h3 {
     font-size: 26px;
     line-height: 31.2px;
-}
-
-.cta h4 {
-    font-size: 15px;
-    line-height: 18px;
-    text-transform: uppercase;
-    color: #eeeeee;
 }
 
 
@@ -465,4 +476,342 @@ text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 flex: none;
 order: 0;
 flex-grow: 0;
+}
+
+@media (max-width: 390px) {
+    .container {
+        width: 390px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .btn, .btn-n {
+        position: absolute;
+        filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
+        width: 54px;
+        height: 54px;
+        left: 360px;
+        top: 17px;
+        background: rgba(237, 237, 237, 0.94);
+        border-radius: 4px;
+        border: none;
+        color: rgba(96, 88, 88, 1);
+    }
+
+    .upp, .ner {
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .upp {
+        border: 2px solid #222222;
+        border-radius: 4px;
+        color: rgba(96, 88, 88, 1);
+    }
+
+    .ner {
+        border-radius: 0 0 8px 8px;
+        border: 2px solid #222222;
+        color: rgba(96, 88, 88, 1);
+    }
+
+    .menu h2 {
+        width: 100%;
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        color: rgba(244, 243, 241, 0.94);
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 10px;
+        left: 16px;
+    }
+
+    .menu {
+        margin: auto;
+        margin-top: 10px;
+        padding: 16px;
+        border-radius: 8px;
+        position: relative;
+        width: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: rgba(72, 144, 120, 1);
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item {
+        width: 340px;
+        height: 89px;
+        padding: 16px 0;
+        border-radius: 8px 8px 0px 0px;
+        opacity: 1px;
+    }
+
+    .food-button {
+        background-color: rgba(96, 88, 88, 1);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: left;
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .add-dip, .drink-button {
+        display: flex;
+        flex-direction: row;
+        padding: 8px 12px;
+        gap: 10px;
+        width: 100%;
+        height: 33px;
+        background: rgba(241, 240, 236, 0.24);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        color: rgb(244, 243, 241);
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 10px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .name-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        color: rgba(244, 243, 241, 0.94);
+    }
+
+    .line {
+        flex-grow: 1;
+        border-bottom: 2px dotted #fff;
+    }
+
+    .ingredients {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14.4px;
+        text-transform: lowercase;
+        color: rgba(244, 243, 241, 0.94);
+    }
+
+    .frame10, .frame7 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .dips, .drinks {
+        background-color: rgba(96, 88, 88, 1);
+        color: #fff;
+        padding: 16px;
+        cursor: pointer;
+        width: 100%;
+        gap: 24px;
+        border-radius: 8px;
+        text-align: center;
+        height: 164px;
+        padding: 0px 16px 0px 16px;
+    }
+
+    .dips {
+        margin-top: 20px;
+    }
+
+    button:active {
+        background-color: rgba(53, 49, 49, 1);
+    }
+
+    button:hover {
+        background-color: rgba(53, 49, 49, 1);
+    }
+
+    /* order */
+    .orderb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(238, 238, 238, 1);
+        height: calc(100vh - 20px);
+    }
+
+    .cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+
+    .items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .order-item {
+        display: flex;
+        flex-direction: column;
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .order-items .item-name {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .order-item .item-price {
+        font-size: 12px;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .quantity button {
+        background-color: #ddd;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .total {
+        background-color: rgba(96, 88, 88, 1);
+        padding: 16px;
+        border-radius: 8px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .total-title {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        color: rgba(244, 243, 241, 0.94);
+    }
+
+    .total-subtitle {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: rgba(244, 243, 241, 0.94);
+    }
+
+    .take-my-money {
+        background-color: #3CB371;
+        border: none;
+        border-radius: 8px;
+        color: rgba(244, 243, 241, 0.94);
+        font-family: 'Fira Sans';
+        font-size: 16px;
+        padding: 12px 20px;
+        cursor: pointer;
+        margin-top: 16px;
+    }
+
+    .cta {
+        background-color: rgba(96, 88, 88, 1);
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .cta h2 {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: rgba(244, 243, 241, 0.94);
+        margin-bottom: 8px;
+    }
+
+    .cta h3 {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: rgba(244, 243, 241, 0.94);
+        margin-bottom: 16px;
+    }
+
+    .cta img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-around;
+        padding: 16px;
+        background-color: #333;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .footer button {
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-family: 'Fira Sans';
+        font-size: 16px;
+    }
 }

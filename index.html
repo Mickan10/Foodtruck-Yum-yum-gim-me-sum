@@ -11,20 +11,19 @@
     <title>Foodtruck: Yum yum gim me sum</title>
 </head>
 <body>
+    <div class="container">
 
-<div class="container">
-
-    <!---- Menu ---->   
-    <section id="menu" class="menu">
-
-        <!--cartknapp-->
-        <button class="btn">
-            <div class="upp"></div>
-            <div class="ner"></div>
-        </button>
-
+        <!---- Menu ---->   
+        <section id="menu" class="menu">
+    
+            <!-- Cartknapp -->
+            <button id="cartButton" class="btn">
+                <div class="upp"></div>
+                <div class="ner"></div>
+            </button>
+    
             <h2>MENY</h2>
-
+    
             <div class="item">
                 <button class="food-button">
                     <div class="name-price">
@@ -79,10 +78,9 @@
                     <p class="ingredients">majs, tomat, rostade ärtor, vitlök, lime</p>
                 </button>
             </div>
-
-        
-
+    
             <!-------Dipmeny----->
+
             <div class="dips">
                 <div class="name-price">
                     <p class="item-name">DIPSÅS</p>
@@ -98,65 +96,65 @@
                     <button class="add-dip" data-name="guacamole" data-price="19">Guacamole</button>
                 </div>    
             </div>
-
+    
             <!-------Dricka----->
+
             <div class="drinks">
                 <div class="name-price">
                     <p class="item-name">DRYCK</p>
                     <div class="line"></div>
                     <p class="item-price">19 SEK</p>
                 </div>
-
+    
                 <div class="frame7">
-                    <button class="drink-button" data-name="Fanta Orange" data-price="19 SEK">Fanta Orange</button>
-                    <button class="drink-button" data-name="Fanta Exotic" data-price="20 SEK">Fanta Exotic</button>
-                    <button class="drink-button" data-name="Coca Cola" data-price="19 SEK">Coca Cola</button>
-                    <button class="drink-button" data-name="Sprite" data-price="19 SEK">Sprite</button>
-                    <button class="drink-button" data-name="LOKA Granatäpple" data-price="19 SEK">LOKA Granatäpple</button>
-                    <button class="drink-button" data-name="LOKA Citrus" data-price="19 SEK">LOKA Citrus</button>
+                    <button class="drink-button" data-name="Fanta Orange" data-price="19">Fanta Orange</button>
+                    <button class="drink-button" data-name="Fanta Exotic" data-price="20">Fanta Exotic</button>
+                    <button class="drink-button" data-name="Coca Cola" data-price="19">Coca Cola</button>
+                    <button class="drink-button" data-name="Sprite" data-price="19">Sprite</button>
+                    <button class="drink-button" data-name="LOKA Granatäpple" data-price="19">LOKA Granatäpple</button>
+                    <button class="drink-button" data-name="LOKA Citrus" data-price="19">LOKA Citrus</button>
                 </div>
             </div> 
-    </section>
+        </section>
+    
+        <!-----Cart-sidan----->
 
-
-        <!-----Cart-sidan------>
         <section id="orderb" class="orderb" style="display: none;">
         
-        <div class="cart">
-            <button class="btn-n">*</button>
-            <div class="items">
-                <!------läggs i js----->
+            <div class="cart">
+                <button id="checkoutButton" class="btn-n">Meny</button>
+                <div class="items">
+                    <!-- läggs i js -->
+                </div>
+                <div class="total">
+                    <span class="total-title">TOTALT</span>
+                    <span class="total-subtitle">inkl 20% moms</span>
+                    <span class="price">0 SEK</span>
+                </div>
+                <button class="take-my-money">TAKE MY MONEY!</button>
             </div>
-            <div class="total">
-                <span class="total">TOTALT</span>
-                <span>inkl 20% moms</span>
-                <span class="price">0 SEK</span>
-            </div>
-            <button class="take-my-money">TAKE MY MONEY!</button>
-        </div>
         </section>
-
-
-        
+    
         <!----CTA-sidan---->
-        <section id="cta-section" class="cta-section" style="display: none;">
 
+        <section id="cta-section" class="cta-section" style="display: none;">
+    
             <div class="cta">
                 <div class="cta-box">
-                    <img src="a087f7ec21b4c797b479c102d8b7d9f8.png">
+                    <img src="a087f7ec21b4c797b479c102d8b7d9f8.png" alt="Image">
                     <h2>DINA WONTONS TILLAGAS!</h2>
                     <h3>ETA 5 MIN</h3>
-                    <h4>#4kjwsdf2</h4>
-
+                    <span class="OrderId">#</span>
+    
                     <div class="footer">
-                        <button class="kvitto">UR FUNKTION</button>
-                        <button class="order">GÖR EN NY BESTÄLLNING</button>
+                        <button class="kvitto">Kvitto</button>
+                        <button id="newOrderButton" class="order">GÖR EN NY BESTÄLLNING</button>
                     </div>
-
+    
                 </div>
             </div>        
         </section>
-
+    
 </div>
 </body> 
 </html>
