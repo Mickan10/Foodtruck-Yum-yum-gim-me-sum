@@ -2,14 +2,14 @@ const apiKey = "yum-vKkkQHqQboi7c6JF";
 const apiUrl = "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu";
 const tenant = {
     name: 'mikaela',
-    id: "tdfe"
+    id: "tdfe",
 };
 
 // För att spara id och mat-lista
 let OrderId = "";
 let cart = [];
 
-// Funktion för att hämta data api
+// Funktion för att hämta data från API
 async function fetchMenuData() {
     const options = {
         method: 'GET',
@@ -20,6 +20,7 @@ async function fetchMenuData() {
         },
     };
     
+    try {
         const foodResponse = await fetch(apiUrl + "?type=wonton", options);
         const foodData = await foodResponse.json();
 
@@ -30,6 +31,9 @@ async function fetchMenuData() {
         const dipData = await dipResponse.json();
 
         renderMenuItems(foodData, dipData, drinkData);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 // Funktion som tar API-data och lägger i listor
@@ -85,7 +89,7 @@ function renderMenuItems(foodData, dipsData, drinksData) {
     }
 }
 
-//hämtningen av menydata
+// hämtningen av menydata
 fetchMenuData();
 
 // Funktion för att växla sektion
@@ -132,6 +136,29 @@ function renderCart() {
     });
 
     updateTotalPrice();
+}
+
+
+
+// Funktion för att skapa en order
+async function createOrder() {
+    const orderDetails = {
+        tenantId: tenant,
+        items: cart.map(item => ({ name: item.name, price: item.price})) 
+    };
+
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "x-zocom": apiKey,
+        },
+        body: JSON.stringify(orderDetails),
+    };
+
+        const response = await fetch('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tdfe/orders', options);
+        const orderResponse = await response.json();
+        return orderResponse;
 }
 
 // Uppdatera antal och pris
