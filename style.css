@@ -1,12 +1,11 @@
 .container
 {
 
-    width: 390px;
-    margin: 0 auto; 
+    max-width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; 
 }
 
 .btn
@@ -15,8 +14,8 @@
     filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
     width: 54px;
     height: 54px;
-    left: 360px;
-    top: 17px;
+    left: 320px;
+    top: 50px;
     background: rgba(237, 237, 237, 0.94);
     border-radius: 4px;
     border: none;
@@ -29,7 +28,7 @@
     filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
     width: 54px;
     height: 54px;
-    left: 360px;
+    left: 320px; 
     top: 17px;
     background: rgba(237, 237, 237, 0.94);
     border-radius: 4px;
@@ -64,39 +63,23 @@
 
 .menu h2
 {
-    width: 104px;
-    height: 24px;
-    font-family: 'Fira Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 38px;
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    color: rgba(244, 243, 241, 0.94);
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-    position: absolute;
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    left: -135px;
     top: 40px;
-    left: 45px;
 }
 
 .menu 
 {
-    margin: auto; 
-    margin-top: 10px;
-    padding: 20px; 
-    border-radius: 10px;
-    position: relative;
     width: 100%;
-    height: 1068px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; 
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
     background-color: rgba(72, 144, 120, 1);
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 } 
 
 .item
@@ -122,23 +105,23 @@ margin-top: 10px;
 
 .add-dip, .drink-button
 {
-display: flex; 
-flex-direction: row;  
-padding: 8px 12px;
-gap: 10px;
-width: 108px;
-height: 33px;
-background: rgba(241, 240, 236, 0.24);
-border-radius: 4px;
-border: none;
-cursor: pointer;
-color: rgb(244, 243, 241);
-font-family: 'Fira Sans';
-font-style: normal;
-font-weight: 500;
-font-size: 13px;
-line-height: 10px;
-text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    display: flex; 
+    flex-direction: row;  
+    padding: 8px 10px;
+    gap: 10px;
+    width: 108px;
+    height: 33px;
+    background: rgba(241, 240, 236, 0.24);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: rgb(244, 243, 241);
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .name-price
@@ -188,7 +171,6 @@ margin-bottom: 8px;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    width: 358px;
     border-radius: 8px; 
 }
 
@@ -198,14 +180,13 @@ margin-bottom: 8px;
     color: #fff;
     padding: 16px;
     cursor: pointer;
-    width: 100%;
+    max-width: 310px;
     gap: 24px;
-    border-radius: 8px;
     text-align: center;
-    height: 164px;
+    align-items: center;
+    min-height: 174px;
     padding: 0px 16px 0px 16px;
     border-radius: 8px;
-    opacity: 0px;
 
 }
 
@@ -234,7 +215,6 @@ button:hover
     align-items: center;
     background-color: rgba(238, 238, 238, 1);
     height: 100vh;
-    position: relative
 }
 
 .cart {
@@ -249,7 +229,7 @@ button:hover
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow-y: auto;
-    max-height: 90vh;
+    height: 90vh;
 }
 
 .items {
@@ -318,6 +298,9 @@ button:hover
     text-align: center;
     border-radius: 4px;
     margin-bottom: 10px;
+    position: relative;
+    top: 200px;
+    
 }
 
 .total-title {
@@ -341,9 +324,16 @@ button:hover
     width: 358px;
     text-align: center;
     border-radius: 4px;
+    position: relative;
+    top: 200px;
 }
 
 /* CTA */
+
+.cta-section
+{
+    background: #605858;
+}
 
 .cta
 {

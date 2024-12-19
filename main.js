@@ -5,94 +5,237 @@ const tenant = {
     id: "tdfe",
 };
 
-// För att spara id och mat-lista
-let OrderId = "";
 let cart = [];
 
-// Funktion för att hämta data från API
+// Fetch menydata (GET)
 async function fetchMenuData() {
-    const options = {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            accept: "application/json",
-            "x-zocom": apiKey,
-        },
-    };
-    
     try {
-        const foodResponse = await fetch(apiUrl + "?type=wonton", options);
+        const options = {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "x-zocom": apiKey,
+            },
+        };
+
+        const foodResponse = await fetch(apiUrl + `?type=wonton`, options);
         const foodData = await foodResponse.json();
 
-        const drinkResponse = await fetch(apiUrl + "?type=drink", options);
+        const drinkResponse = await fetch(apiUrl + `?type=drink`, options);
         const drinkData = await drinkResponse.json();
 
-        const dipResponse = await fetch(apiUrl + "?type=dip", options);
+        const dipResponse = await fetch(apiUrl + `?type=dip`, options);
         const dipData = await dipResponse.json();
 
-        renderMenuItems(foodData, dipData, drinkData);
+        console.log(foodData, drinkData, dipData);
     } catch (error) {
-        console.error(error);
+        console.error("Fel vid hämtning av menydata:", error);
     }
 }
-
-// Funktion som tar API-data och lägger i listor
-function renderMenuItems(foodData, dipsData, drinksData) {
-    const foodContainer = document.querySelector('.food-button');
-    const dipsContainer = document.querySelector('.dips .frame10');
-    const drinksContainer = document.querySelector('.drinks .frame7');
-
-    // Rendera mat
-    if (foodData && foodData.food) {
-        foodData.food.forEach(item => {
-            const button = document.createElement('button');
-            button.classList.add('food-button');
-            button.setAttribute('data-name', item.name);
-            button.setAttribute('data-price', item.price);
-            button.innerHTML = `
-                <div class="name-price">
-                    <p class="item-name">${item.name}</p>
-                    <div class="line"></div>
-                    <p class="item-price">${item.price} SEK</p>
-                </div>
-                <p class="ingredients">${item.ingredients}</p>
-            `;
-            button.addEventListener('click', () => addItemToCart(item.name, item.price));
-            foodContainer.appendChild(button);
-        });
-    }
-
-    // Rendera dips
-    if (dipsData && dipsData.dips) {
-        dipsData.dips.forEach(dip => {
-            const button = document.createElement('button');
-            button.classList.add('add-dip');
-            button.setAttribute('data-name', dip.name);
-            button.setAttribute('data-price', dip.price);
-            button.textContent = dip.name;
-            button.addEventListener('click', () => addItemToCart(dip.name, dip.price));
-            dipsContainer.appendChild(button);
-        });
-    }
-
-    // Rendera drycker
-    if (drinksData && drinksData.drinks) {
-        drinksData.drinks.forEach(drink => {
-            const button = document.createElement('button');
-            button.classList.add('drink-button');
-            button.setAttribute('data-name', drink.name);
-            button.setAttribute('data-price', drink.price);
-            button.textContent = drink.name;
-            button.addEventListener('click', () => addItemToCart(drink.name, drink.price));
-            drinksContainer.appendChild(button);
-        });
-    }
-}
-
-// hämtningen av menydata
 fetchMenuData();
 
-// Funktion för att växla sektion
+// Skicka beställning (POST) och returnera order-ID
+async function sendOrder() {
+    try {
+        const itemsToOrder = cart.map(item => ({
+            id: Date.now(),  // Använd unikt ID för varje artikel
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity
+        }));
+
+        const orderValue = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const timestamp = new Date().toISOString();
+        const eta = new Date(new Date().getTime() + 30 * 60000).toISOString();  // ETA 30 minuter från nu
+
+        const orderData = {
+            description: "Beställning från kundvagnen",
+            items: itemsToOrder,
+            orderValue,
+            timestamp,
+            eta,
+            state: "waiting"
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "x-zocom": apiKey
+            },
+            body: JSON.stringify(orderData)
+        };
+
+        const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/orders`, options);
+        const responseData = await response.json();
+        console.log("Beställning skickad:", responseData);
+
+        // Förutsatt att order-ID finns i svar
+        if (responseData && responseData.id) {
+            const orderId = responseData.id;
+            console.log("Order-ID:", orderId);
+            
+            // Här kan vi spara eller vidarebefordra order-ID till nästa steg
+            renderOrderId(responseData); // Rendera order-ID på sidan
+        }
+
+    } catch (error) {
+        console.error("Fel vid skickande av beställning:", error);
+    }
+}
+
+// Hämta beställningar (GET)
+async function fetchOrders() {
+    try {
+        const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenant.id}/orders`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "x-zocom": apiKey,
+            }
+        });
+        const responseData = await response.json();
+
+        if (response.ok) {
+            console.log("Hämtade beställningar:", responseData);
+            // Rendera eller bearbeta orderdata om det behövs
+        } else {
+            console.error("Fel vid hämtning av beställningar:", responseData);
+        }
+    } catch (error) {
+        console.error("Fel vid GET-förfrågan:", error);
+    }
+}
+
+// Hämta orderdata med ett specifikt ID (GET)
+async function fetchOrderById(orderId) {
+    try {
+        const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tdfe/orders/${orderId}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "x-zocom": apiKey,
+            }
+        });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+            console.log("Hämtade order med ID:", responseData);
+            renderOrderId(responseData);  // Rendera order-ID
+        } else {
+            console.error("Fel vid hämtning av orderdata:", responseData);
+        }
+    } catch (error) {
+        console.error("Fel vid GET-förfrågan:", error);
+    }
+}
+
+// Funktion för att rendera order-ID
+function renderOrderId(orderData) {
+    const orderIdSpan = document.querySelector('.OrderId');
+    if (orderData && orderData.id) {
+        orderIdSpan.textContent = `#${orderData.id}`;  // Sätt order-ID:t i span
+    } else {
+        orderIdSpan.textContent = 'Order-ID ej tillgängligt';
+    }
+}
+
+// Hitta menyobjekt baserat på namn
+function getMenuItemByName(name, foodData, drinkData, dipData) {
+    const allMenuItems = [...foodData, ...drinkData, ...dipData]; // Sammanfoga alla menyobjekt
+    return allMenuItems.find(item => item.name === name) || {}; // Returnera objektet eller ett tomt objekt om ej hittat
+}
+
+// Lägg till vara i kundvagnen
+function addItemToCart(name, price) {
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity += 1; // Om varan redan finns, öka kvantiteten
+    } else {
+        cart.push({ name, price, quantity: 1 }); // Lägg till ny vara
+    }
+    renderCart(); // Uppdatera kundvagnen
+}
+
+// Rendera kundvagnen
+function renderCart() {
+    const itemsContainer = document.querySelector('.items');
+    const totalPriceElement = document.querySelector('.total .price');
+    itemsContainer.innerHTML = ''; // Rensa kundvagnen
+
+    cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('order-item');
+        itemDiv.innerHTML = `
+            <div>${item.name} - ${item.price} SEK x ${item.quantity}</div>
+            <div>
+                <button onclick="updateQuantity('${item.name}', -1)">-</button>
+                <button onclick="updateQuantity('${item.name}', 1)">+</button>
+            </div>
+        `;
+        itemsContainer.appendChild(itemDiv);
+    });
+
+    totalPriceElement.textContent = `Total: ${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)} SEK`;
+}
+
+// Uppdatera kvantitet för en vara
+function updateQuantity(name, change) {
+    const item = cart.find(item => item.name === name);
+    if (item) {
+        item.quantity = Math.max(1, item.quantity + change);  // Undvik negativ kvantitet
+        renderCart();
+    }
+}
+
+// Funktion för att visa orderbekräftelse
+function renderOrderConfirmation(responseData) {
+    console.log("Orderbekräftelse:", responseData);
+    // Här kan du lägga till logik för att rendera bekräftelsen på UI:et.
+}
+
+// Lyssna på klick på de fördefinierade knapparna för mat, dips och drycker
+document.querySelectorAll('.food-button').forEach(button => {
+    const name = button.getAttribute('data-name');
+    const price = parseFloat(button.getAttribute('data-price'));
+
+    if (name && !isNaN(price)) {
+        button.addEventListener('click', () => {
+            addItemToCart(name, price); // Lägg till artikel i kundvagnen
+        });
+    } else {
+        console.error("Ogiltiga data för varan:", name, price);
+    }
+});
+
+document.querySelectorAll('.dip-button').forEach(button => {
+    const name = button.getAttribute('data-name');
+    const price = parseFloat(button.getAttribute('data-price'));
+
+    if (name && !isNaN(price)) {
+        button.addEventListener('click', () => {
+            addItemToCart(name, price); // Lägg till artikel i kundvagnen
+        });
+    } else {
+        console.error("Ogiltiga data för dip:", name, price);
+    }
+});
+
+document.querySelectorAll('.drink-button').forEach(button => {
+    const name = button.getAttribute('data-name');
+    const price = parseFloat(button.getAttribute('data-price'));
+
+    if (name && !isNaN(price)) {
+        button.addEventListener('click', () => {
+            addItemToCart(name, price); // Lägg till artikel i kundvagnen
+        });
+    } else {
+        console.error("Ogiltiga data för dryck:", name, price);
+    }
+});
+
+// Funktion för att växla mellan sektioner
 function showSection(sectionId) {
     document.querySelectorAll('section').forEach(section => {
         section.style.display = 'none';
@@ -101,82 +244,9 @@ function showSection(sectionId) {
 }
 
 document.querySelector('.btn').addEventListener('click', () => showSection('orderb'));
-document.querySelector('.take-my-money').addEventListener('click', () => showSection('cta-section'));
 document.querySelector('.order').addEventListener('click', () => showSection('menu'));
 document.querySelector('.btn-n').addEventListener('click', () => showSection('menu'));
+document.querySelector('.take-my-money').addEventListener('click', () => showSection('cta-section'));
 
-// Element för att visa kundvagnen och totalpriset
-const itemsContainer = document.querySelector('.items');
-const totalPriceElement = document.querySelector('.total .price');
-
-// Funktion för att lägga till en vara i kundvagnen
-function addItemToCart(name, price) {
-    cart.push({ name, price });
-    renderCart();
-}
-
-// Funktion för att visa valda objekt i orderb
-function renderCart() {
-    itemsContainer.innerHTML = '';
-    cart.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('order-item');
-        itemDiv.innerHTML = `
-            <div>${item.name} <span>${item.price} SEK</span></div>
-            <div class="quantity">
-                <button class="decrease-btn" data-index="${index}">-</button>
-                <span class="quantity-count">1</span>
-                <button class="increase-btn" data-index="${index}">+</button>
-            </div>
-        `;
-        itemsContainer.appendChild(itemDiv);
-
-        itemDiv.querySelector('.decrease-btn').addEventListener('click', () => updateQuantity(index, -1));
-        itemDiv.querySelector('.increase-btn').addEventListener('click', () => updateQuantity(index, 1));
-    });
-
-    updateTotalPrice();
-}
-
-
-
-// Funktion för att skapa en order
-async function createOrder() {
-    const orderDetails = {
-        tenantId: tenant,
-        items: cart.map(item => ({ name: item.name, price: item.price})) 
-    };
-
-    const options = {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "x-zocom": apiKey,
-        },
-        body: JSON.stringify(orderDetails),
-    };
-
-        const response = await fetch('https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tdfe/orders', options);
-        const orderResponse = await response.json();
-        return orderResponse;
-}
-
-// Uppdatera antal och pris
-function updateQuantity(index, change) {
-    const quantityElement = itemsContainer.querySelectorAll('.quantity-count')[index];
-    let quantity = parseInt(quantityElement.textContent, 10);
-
-    quantity = Math.max(1, quantity + change);
-    quantityElement.textContent = quantity;
-
-    updateTotalPrice();
-}
-
-// Uppdatera det totala priset
-function updateTotalPrice() {
-    const total = cart.reduce((sum, item, index) => {
-        const quantity = parseInt(itemsContainer.querySelectorAll('.quantity-count')[index].textContent, 10);
-        return sum + item.price * quantity;
-    }, 0);
-    totalPriceElement.textContent = `${total} SEK`;
-}
+// Event listener för att skicka ordern ***sendOrder,
+document.querySelector('#cartButton').addEventListener('click', fetchOrders);
