@@ -1,16 +1,22 @@
+body
+{
+    background-color: #eceaea69;
+}
+
 .container
 {
 
-    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn
 {
-    position: absolute;
+    position:absolute;
     filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
     width: 54px;
     height: 54px;
@@ -20,7 +26,12 @@
     border-radius: 4px;
     border: none;
     color: rgba(96, 88, 88, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
 }
+
 
 .btn-n
 {
@@ -29,11 +40,16 @@
     width: 54px;
     height: 54px;
     left: 320px; 
-    top: 17px;
+    top: 20px;
     background: rgba(237, 237, 237, 0.94);
     border-radius: 4px;
     border: none;
     color: rgba(96, 88, 88, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    border: solid 1px rgba(0, 0, 0, 0.199);
 }
 
 .upp, .ner
@@ -48,21 +64,31 @@
 
 .upp 
 {
-    border: 2px solid #222222;
-    border-radius: 4px;
+    border: 2px solid #575656;
+    border-radius: 20px 20px 0 0;
     color: rgba(96, 88, 88, 1); 
+    width: 70%;
 }
 
 
 .ner 
 {  
-    border-radius: 0 0 8px 8px;
-    border: 2px solid #222222;
+    border-radius: 0 0 10px 8px;
+    border: 2px solid #575656;
     color: rgba(96, 88, 88, 1); 
 }
 
-.menu h2
-{
+.orange-circle {
+    position: absolute;
+    width: 16px; 
+    height: 16px;
+    background-color: rgb(198, 64, 2); 
+    border-radius: 50%; 
+    top: -4px;
+    right: -4px;
+}
+
+.menu h2 {
     font-size: 2rem;
     text-align: center;
     color: white;
@@ -71,37 +97,39 @@
     top: 40px;
 }
 
-.menu 
-{
+.menu {
     width: 100%;
-    max-width: 800px; 
+    max-width: 800px;
     margin: 20px auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
     background-color: rgba(72, 144, 120, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1);
 } 
 
-.item
-{
-width: 340px;
-height: 89px;
-padding: 16px 0px 0px 0px;
-border-radius: 8px 8px 0px 0px;
-opacity: 1px;
-
+.item {
+    width: 340px;
+    height: 89px;
+    padding: 16px 0px 0px 0px;
+    border-radius: 8px 8px 0px 0px;
+    opacity: 1px;
 }
 
-.food-button
-{
-background-color: rgba(96, 88, 88, 1);
-color: #fff;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-text-align: left; 
-margin-top: 10px;
-} 
+.food-button {
+    background-color: rgba(96, 88, 88, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
 .add-dip, .drink-button
 {
@@ -122,6 +150,7 @@ margin-top: 10px;
     font-size: 13px;
     line-height: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .name-price
@@ -149,19 +178,19 @@ border-bottom: 2px dotted #fff;
 
 .ingredients
 { 
-font-family: 'Fira Sans';
-font-style: normal;
-font-weight: 500;
-width: 326px;
-height: 23px;
-font-size: 14px;
-line-height: 16.8px;
-text-transform: lowercase;
-color: rgba(244, 243, 241, 0.94);
-text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-flex: none;
-order: 1;
-margin-bottom: 8px;
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 500;
+    width: 326px;
+    height: 23px;
+    font-size: 14px;
+    line-height: 16.8px;
+    text-transform: lowercase;
+    color: rgba(244, 243, 241, 0.94);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    flex: none;
+    order: 1;
+    margin-bottom: 8px;
 }
 
 .frame10, .frame7
@@ -183,9 +212,8 @@ margin-bottom: 8px;
     max-width: 310px;
     gap: 24px;
     text-align: center;
-    align-items: center;
     min-height: 174px;
-    padding: 0px 16px 0px 16px;
+    padding: 0px 16px 16px 16px;
     border-radius: 8px;
 
 }
@@ -201,18 +229,12 @@ button:active
     background-color: rgba(53, 49, 49, 1); 
 }
 
-button:hover
-{
-    background-color: rgba(53, 49, 49, 1); 
-}
-
-
 
 /* order */
 .orderb {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: rgba(238, 238, 238, 1);
     height: 100vh;
 }
@@ -226,10 +248,10 @@ button:hover
     padding: 16px;
     border-radius: 8px;
     background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow-y: auto;
     height: 90vh;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .items {
@@ -244,49 +266,88 @@ button:hover
 .order-item {
     display: flex;
     flex-direction: column;
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+    align-items: flex-start; 
 }
 
-.order-items .item-name 
-{
+.order-item .item-name {
     font-weight: bold;
     font-size: 16px;
     text-transform: uppercase;
     margin-bottom: 8px;
     color: #333;
-}
-
-.order-item .item-price {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
+    border-bottom: 1px solid #ddd;
 }
 
 .quantity {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: 32px; 
 }
 
 .quantity button {
     background-color: #ddd;
     border: none;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 30px; 
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px; 
+    transition: background-color 0.3s ease; 
 }
 
 .quantity button:hover {
     background-color: #bbb;
 }
 
+.order-item .item-details {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+
+.order-item .item-quantity {
+    font-size: 14px;
+    color: #555;
+}
+
+.quantity {
+    align-items: center;
+}
+
+.quantity button {
+    background-color: #eee;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.quantity button:hover {
+    background-color: #ccc;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #ffffff;
+    margin-left: auto;
+}
+
 .total {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     background-color: #605858; 
     color: rgba(244, 243, 241, 0.94);
     padding: 24px;
@@ -300,15 +361,31 @@ button:hover
     margin-bottom: 10px;
     position: relative;
     top: 200px;
-    
+    gap: 5px;
+    box-sizing: border-box;
+    width: 358px;
+    height: 120px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .total-title {
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .total-subtitle {
-    font-size: 18px; 
+    font-size: 15px; 
+}
+
+.price {
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.total-info {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%; 
+    font-size: 14px;
 }
 
 .take-my-money {
@@ -326,13 +403,16 @@ button:hover
     border-radius: 4px;
     position: relative;
     top: 200px;
+    height: 120px;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* CTA */
 
+/* CTA */
 .cta-section
 {
     background: #605858;
+    height: 100vh;
 }
 
 .cta
@@ -360,6 +440,7 @@ button:hover
     height: 362px;
     left: 0px;
     top: 97px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .cta img 
@@ -379,14 +460,16 @@ button:hover
     margin: 0;
 }
 
-.cta h2 {
+.cta h2
+{
     font-size: 32px;
     line-height: 38.4px;
     font-weight: 700;
     padding: 10px;
 }
 
-.cta h3 {
+.cta h3
+{
     font-size: 26px;
     line-height: 31.2px;
 }
@@ -429,379 +512,205 @@ flex-grow: 0;
 
 .kvitto
 {
-width: 110px;
-height: 29px;
-font-family: 'Fira Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-display: flex;
-align-items: center;
-background-color: #605858;
-text-transform: uppercase;
-color: rgba(244, 243, 241, 0.94);
-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-flex: none;
-order: 0;
-flex-grow: 0;
+    width: 110px;
+    height: 29px;
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    background-color: #605858;
+    text-transform: uppercase;
+    color: rgba(244, 243, 241, 0.94);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
+.error-message 
+{
+    position: absolute;
+    top: -40px; 
+    left: 50%;
+    transform: translateX(-50%);  
+    background-color: #6d5a57;
+    color: #ffffff;
+    border: 1px solid #322320;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 200px;
+    text-align: center;
+    z-index: 1;  
 }
 
 .order
 {
-width: 268px;
-height: 29px;
-font-family: 'Fira Sans';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-display: flex;
-align-items: center;
-text-transform: uppercase;
-background-color: #605858;
-color: rgba(244, 243, 241, 0.94);
-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-flex: none;
-order: 0;
-flex-grow: 0;
+    width: 268px;
+    height: 29px;
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    background-color: #605858;
+    color: rgba(244, 243, 241, 0.94);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
-@media (max-width: 390px) {
+#cta-section {
+    display: none;
+}
+
+body.menu-active 
+{
+    background-color: rgba(72, 144, 120, 1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+body.cta-active 
+{
+    background-color: #605858;
+}
+
+
+body.cta-active, .cta-section 
+{
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Media Query - Storskärm */
+@media (min-width: 1200px) 
+{
     .container {
-        width: 390px;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative;
-    }
-
-    .btn, .btn-n {
-        position: absolute;
-        filter: drop-shadow(0px 0px 16px rgba(38, 88, 37, 0));
-        width: 54px;
-        height: 54px;
-        left: 360px;
-        top: 17px;
-        background: rgba(237, 237, 237, 0.94);
-        border-radius: 4px;
-        border: none;
-        color: rgba(96, 88, 88, 1);
-    }
-
-    .upp, .ner {
-        box-sizing: border-box;
-        width: 100%;
-        display: flex;
         justify-content: center;
-        align-items: center;
-        padding: 10px;
-    }
-
-    .upp {
-        border: 2px solid #222222;
-        border-radius: 4px;
-        color: rgba(96, 88, 88, 1);
-    }
-
-    .ner {
-        border-radius: 0 0 8px 8px;
-        border: 2px solid #222222;
-        color: rgba(96, 88, 88, 1);
-    }
-
-    .menu h2 {
-        width: 100%;
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 28px;
-        display: flex;
-        align-items: center;
-        text-transform: uppercase;
-        color: rgba(244, 243, 241, 0.94);
-        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
-        position: absolute;
-        top: 10px;
-        left: 16px;
     }
 
     .menu {
-        margin: auto;
-        margin-top: 10px;
-        padding: 16px;
-        border-radius: 8px;
-        position: relative;
         width: 100%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 40px auto;
+        padding: 40px;
         background-color: rgba(72, 144, 120, 1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-direction: column;
-        gap: 0px;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
     }
 
-    .item {
-        width: 340px;
-        height: 89px;
-        padding: 16px 0;
-        border-radius: 8px 8px 0px 0px;
-        opacity: 1px;
+    .item 
+    {
+        max-width: 800px;
+        width: 100%;
+        padding: 10px;
     }
 
     .food-button {
-        background-color: rgba(96, 88, 88, 1);
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: left;
-        margin-top: 10px;
-        padding: 8px 16px;
-        font-size: 14px;
+        width: 100%;
     }
 
     .add-dip, .drink-button {
-        display: flex;
-        flex-direction: row;
-        padding: 8px 12px;
-        gap: 10px;
-        width: 100%;
-        height: 33px;
-        background: rgba(241, 240, 236, 0.24);
-        border-radius: 4px;
-        border: none;
-        cursor: pointer;
-        color: rgb(244, 243, 241);
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 10px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+        width: auto;
+        padding: 12px 15px;
+        font-size: 16px;
     }
 
     .name-price {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 20px;
-        color: rgba(244, 243, 241, 0.94);
-    }
-
-    .line {
-        flex-grow: 1;
-        border-bottom: 2px dotted #fff;
+        font-size: 24px;
+        gap: 10px;
     }
 
     .ingredients {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14.4px;
-        text-transform: lowercase;
-        color: rgba(244, 243, 241, 0.94);
-    }
-
-    .frame10, .frame7 {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-        width: 100%;
+        font-size: 16px;
     }
 
     .dips, .drinks {
-        background-color: rgba(96, 88, 88, 1);
-        color: #fff;
-        padding: 16px;
-        cursor: pointer;
+        
         width: 100%;
-        gap: 24px;
-        border-radius: 8px;
-        text-align: center;
-        height: 164px;
-        padding: 0px 16px 0px 16px;
-    }
-
-    .dips {
-        margin-top: 20px;
-    }
-
-    button:active {
-        background-color: rgba(53, 49, 49, 1);
-    }
-
-    button:hover {
-        background-color: rgba(53, 49, 49, 1);
-    }
-
-    /* order */
-    .orderb {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(238, 238, 238, 1);
-        height: calc(100vh - 20px);
-    }
-
-    .cart {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        width: 100%;
-        padding: 16px;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow-y: auto;
-        max-height: 90vh;
-    }
-
-    .items {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .order-item {
-        display: flex;
-        flex-direction: column;
-        padding: 8px 0;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .order-items .item-name {
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .order-item .item-price {
-        font-size: 12px;
-    }
-
-    .quantity {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .quantity button {
-        background-color: #ddd;
-        border: none;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    .total {
-        background-color: rgba(96, 88, 88, 1);
-        padding: 16px;
-        border-radius: 8px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .total-title {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 24px;
-        color: rgba(244, 243, 241, 0.94);
-    }
-
-    .total-subtitle {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: rgba(244, 243, 241, 0.94);
-    }
-
-    .take-my-money {
-        background-color: #3CB371;
-        border: none;
-        border-radius: 8px;
-        color: rgba(244, 243, 241, 0.94);
-        font-family: 'Fira Sans';
-        font-size: 16px;
-        padding: 12px 20px;
-        cursor: pointer;
-        margin-top: 16px;
-    }
-
-    .cta {
-        background-color: rgba(96, 88, 88, 1);
-        width: 100%;
+        gap: 30px;
         padding: 20px;
-        text-align: center;
-        border-radius: 8px;
-    }
-
-    .cta h2 {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 28px;
-        color: rgba(244, 243, 241, 0.94);
-        margin-bottom: 8px;
-    }
-
-    .cta h3 {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: rgba(244, 243, 241, 0.94);
-        margin-bottom: 16px;
-    }
-
-    .cta img {
         max-width: 100%;
-        border-radius: 8px;
+        box-sizing: border-box;
+        
     }
 
-    .footer {
-        display: flex;
-        justify-content: space-around;
-        padding: 16px;
-        background-color: #333;
-        color: #fff;
-        position: absolute;
-        bottom: 0;
+    
+    .frame10, .frame7 {
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .name-price {
+        font-size: 24px;
+        gap: 10px;
+    }
+
+    /* CTA media */
+    .cta-section
+    {
+        width: 20%;
+    }
+
+    .cta-box 
+    {
+        width: 80%; 
+        height: auto; 
+        top: 50px; 
+    }
+
+    .cta h2 
+    {
+        font-size: 48px; 
+        line-height: 56px;
+    }
+
+    .cta h3 
+    {
+        font-size: 32px; 
+        line-height: 38px;
+    }
+
+    .footer
+    {
+        width: 90%;
+         
+    }
+
+    .footer button
+    {
         width: 100%;
+        padding: 20px 16px;
     }
 
-    .footer button {
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 8px;
-        color: #fff;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-family: 'Fira Sans';
-        font-size: 16px;
+    .kvitto
+    {
+        width: 150px; 
+        height: 40px; 
+        font-size: 28px;
+    }
+
+    .order
+    {
+        width: 150px; 
+        height: 40px; 
+        font-size: 28px; 
+    }
+
+    .error-message
+    {
+        font-size: 18px;
+        width: 300px; /
     }
 }

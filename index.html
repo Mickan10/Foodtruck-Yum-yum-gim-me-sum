@@ -20,6 +20,7 @@
             <button id="cartButton" class="btn">
                 <div class="upp"></div>
                 <div class="ner"></div>
+                <div class="orange-circle"></div>
             </button>
     
             <h2>MENY</h2>
@@ -122,14 +123,19 @@
         <section id="orderb" class="orderb" style="display: none;">
         
             <div class="cart">
-                <button id="checkoutButton" class="btn-n">Meny</button>
+                <button id="checkoutButton" class="btn-n">
+                    <div class="upp"></div>
+                    <div class="ner"></div>
+                </button>
                 <div class="items">
                     <!-- läggs i js -->
                 </div>
                 <div class="total">
                     <span class="total-title">TOTALT</span>
+                    <div class="total-info">
                     <span class="total-subtitle">inkl 20% moms</span>
                     <span class="price">0 SEK</span>
+                    </div>
                 </div>
                 <button class="take-my-money">TAKE MY MONEY!</button>
             </div>
@@ -147,7 +153,8 @@
                     <span class="OrderId">#</span>
     
                     <div class="footer">
-                        <!---<button class="kvitto">Kvitto</button>-->
+                        <button class="kvitto">Kvitto</button>
+                        <div class="error-message" style="display: none;">Tyvärr går det inte att se kvitto just nu.</div>
                         <button id="newOrderButton" class="order">GÖR EN NY BESTÄLLNING</button>
                     </div>
     

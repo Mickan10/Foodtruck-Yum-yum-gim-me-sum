@@ -9,7 +9,6 @@ let cart = [];
 
 // Fetch menydata (GET)
 async function fetchMenuData() {
-    try {
         const options = {
             method: 'GET',
             headers: {
@@ -28,9 +27,6 @@ async function fetchMenuData() {
         const dipData = await dipResponse.json();
 
         console.log(foodData, drinkData, dipData);
-    } catch (error) {
-        console.error("Fel vid hämtning av menydata:", error);
-    }
 }
 fetchMenuData();
 
@@ -158,26 +154,39 @@ function addItemToCart(name, price) {
     renderCart(); // Uppdatera kundvagnen
 }
 
-// Rendera kundvagnen
+
+// Rendera kundvagnen (detta används både på kundvagnssidan och order-sidan)
 function renderCart() {
     const itemsContainer = document.querySelector('.items');
     const totalPriceElement = document.querySelector('.total .price');
     itemsContainer.innerHTML = ''; // Rensa kundvagnen
 
+    // Loopar genom alla varor i kundvagnen
     cart.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('order-item');
         itemDiv.innerHTML = `
-            <div>${item.name} - ${item.price} SEK x ${item.quantity}</div>
+            <div>${item.name} - ${item.price} SEK</div>
             <div>
-                <button onclick="updateQuantity('${item.name}', -1)">-</button>
-                <button onclick="updateQuantity('${item.name}', 1)">+</button>
+                <button class="update-quantity" data-name="${item.name}" data-change="-1">-</button>
+                <span>${item.quantity} stycken</span> <!-- Visa antal varor -->
+                <button class="update-quantity" data-name="${item.name}" data-change="1">+</button>
             </div>
         `;
         itemsContainer.appendChild(itemDiv);
     });
 
+    // Uppdatera totalpriset
     totalPriceElement.textContent = `Total: ${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)} SEK`;
+
+    // Lägg till event listeners för plus- och minus-knappar
+    document.querySelectorAll('.update-quantity').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const name = event.target.getAttribute('data-name');
+            const change = parseInt(event.target.getAttribute('data-change'));
+            updateQuantity(name, change);
+        });
+    });
 }
 
 // Uppdatera kvantitet för en vara
@@ -185,7 +194,7 @@ function updateQuantity(name, change) {
     const item = cart.find(item => item.name === name);
     if (item) {
         item.quantity = Math.max(1, item.quantity + change);  // Undvik negativ kvantitet
-        renderCart();
+        renderCart(); // Uppdatera visningen
     }
 }
 
@@ -235,13 +244,42 @@ document.querySelectorAll('.drink-button').forEach(button => {
     }
 });
 
-// Funktion för att växla mellan sektioner
+
+document.querySelector('.take-my-money').addEventListener('click', () => {
+    // Visa cta-sektionen
+    showSection('cta-section');  // Funktion för att visa rätt sektion
+
+    // Lägg till en klass på body för att ändra bakgrundsfärgen
+    document.body.classList.add('cta-active');
+    document.body.classList.remove('menu-active'); // Se till att ta bort bakgrundsfärgen för menu
+
+    // Dölja alla andra sektioner
+    const otherSections = document.querySelectorAll('section:not(#cta-section)');
+    otherSections.forEach(section => {
+        section.style.display = 'none';
+    });
+});
+
+// Funktion för att visa en specifik sektion
 function showSection(sectionId) {
+    // Dölj alla sektioner
     document.querySelectorAll('section').forEach(section => {
         section.style.display = 'none';
     });
-    document.getElementById(sectionId).style.display = 'block';
+
+    // Visa den sektion som ska visas
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.style.display = 'block';
+    }
+
+    // Reset bakgrundsfärg när vi byter till menu
+    if (sectionId === 'menu') {
+        document.body.classList.add('menu-active');
+        document.body.classList.remove('cta-active'); // Ta bort bakgrund för CTA
+    }
 }
+
 
 document.querySelector('.btn').addEventListener('click', () => showSection('orderb'));
 document.querySelector('.order').addEventListener('click', () => showSection('menu'));
@@ -250,3 +288,17 @@ document.querySelector('.take-my-money').addEventListener('click', () => showSec
 
 // Event listener för att skicka ordern ***sendOrder,
 document.querySelector('#cartButton').addEventListener('click', fetchOrders);
+
+//felmeddelande kvitto
+const kvittoButton = document.querySelector('.kvitto');
+const errorMessage = document.querySelector('.error-message');
+
+kvittoButton.addEventListener('click', () => {
+    
+    errorMessage.style.display = 'block';
+
+    setTimeout(() => {
+        errorMessage.style.display = 'none';
+    }, 3000);
+});
+
