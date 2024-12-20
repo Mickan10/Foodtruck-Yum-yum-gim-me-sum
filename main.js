@@ -32,9 +32,8 @@ fetchMenuData();
 
 // Skicka beställning (POST) och returnera order-ID
 async function sendOrder() {
-    try {
         const itemsToOrder = cart.map(item => ({
-            id: Date.now(),  // Använd unikt ID för varje artikel
+            id: Date.now(), 
             name: item.name,
             price: item.price,
             quantity: item.quantity
@@ -42,7 +41,7 @@ async function sendOrder() {
 
         const orderValue = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         const timestamp = new Date().toISOString();
-        const eta = new Date(new Date().getTime() + 30 * 60000).toISOString();  // ETA 30 minuter från nu
+        const eta = new Date(new Date().getTime() + 30 * 60000).toISOString(); 
 
         const orderData = {
             description: "Beställning från kundvagnen",
@@ -71,16 +70,10 @@ async function sendOrder() {
             const orderId = responseData.id;
             console.log("Order-ID:", orderId);
             
-            // Här kan vi spara eller vidarebefordra order-ID till nästa steg
-            renderOrderId(responseData); // Rendera order-ID på sidan
+            renderOrderId(responseData);
         }
-
-    } catch (error) {
-        console.error("Fel vid skickande av beställning:", error);
-    }
 }
 
-// Hämta beställningar (GET)
 async function fetchOrders() {
     try {
         const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenant.id}/orders`, {
@@ -88,24 +81,23 @@ async function fetchOrders() {
             headers: {
                 "Content-Type": "application/json",
                 "x-zocom": apiKey,
-            }
+            },
         });
         const responseData = await response.json();
 
         if (response.ok) {
             console.log("Hämtade beställningar:", responseData);
-            // Rendera eller bearbeta orderdata om det behövs
+            renderOrderId(responseData); // Skicka data till render-funktionen
         } else {
             console.error("Fel vid hämtning av beställningar:", responseData);
         }
     } catch (error) {
-        console.error("Fel vid GET-förfrågan:", error);
+        console.error("Nätverks- eller API-fel:", error);
     }
 }
 
 // Hämta orderdata med ett specifikt ID (GET)
 async function fetchOrderById(orderId) {
-    try {
         const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tdfe/orders/${orderId}`, {
             method: 'GET',
             headers: {
@@ -117,29 +109,32 @@ async function fetchOrderById(orderId) {
         const responseData = await response.json();
 
         if (response.ok) {
-            console.log("Hämtade order med ID:", responseData);
-            renderOrderId(responseData);  // Rendera order-ID
+            console.log(responseData);
+            renderOrderId(responseData); 
         } else {
             console.error("Fel vid hämtning av orderdata:", responseData);
         }
-    } catch (error) {
-        console.error("Fel vid GET-förfrågan:", error);
-    }
 }
 
-// Funktion för att rendera order-ID
 function renderOrderId(orderData) {
     const orderIdSpan = document.querySelector('.OrderId');
-    if (orderData && orderData.id) {
-        orderIdSpan.textContent = `#${orderData.id}`;  // Sätt order-ID:t i span
+    
+    if (!orderIdSpan) {
+        console.error('Elementet .OrderId hittades inte i DOM.');
+        return;
+    }
+
+    if (orderData.orders && orderData.orders.length > 0) {
+        const firstOrderId = orderData.orders[0].id;
+        orderIdSpan.textContent = `#${firstOrderId}`; // Uppdatera textinnehållet
+        console.log("Första order-ID renderat:", firstOrderId);
     } else {
-        orderIdSpan.textContent = 'Order-ID ej tillgängligt';
+        console.error('Inga beställningar hittades i orderData:', orderData);
     }
 }
-
 // Hitta menyobjekt baserat på namn
 function getMenuItemByName(name, foodData, drinkData, dipData) {
-    const allMenuItems = [...foodData, ...drinkData, ...dipData]; // Sammanfoga alla menyobjekt
+    const allMenuItems = [...foodData, ...drinkData, ...dipData]; 
     return allMenuItems.find(item => item.name === name) || {}; // Returnera objektet eller ett tomt objekt om ej hittat
 }
 
@@ -147,71 +142,70 @@ function getMenuItemByName(name, foodData, drinkData, dipData) {
 function addItemToCart(name, price) {
     const existingItem = cart.find(item => item.name === name);
     if (existingItem) {
-        existingItem.quantity += 1; // Om varan redan finns, öka kvantiteten
+        existingItem.quantity += 1; //+antal, vid flera tryck
     } else {
-        cart.push({ name, price, quantity: 1 }); // Lägg till ny vara
+        cart.push({ name, price, quantity: 1 }); 
     }
-    renderCart(); // Uppdatera kundvagnen
+    renderCart(); 
 }
 
-
-// Rendera kundvagnen (detta används både på kundvagnssidan och order-sidan)
 function renderCart() {
     const itemsContainer = document.querySelector('.items');
     const totalPriceElement = document.querySelector('.total .price');
-    itemsContainer.innerHTML = ''; // Rensa kundvagnen
+    itemsContainer.innerHTML = ''; 
 
-    // Loopar genom alla varor i kundvagnen
+    // gå igenom alla varor i kundvagnen
     cart.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('order-item');
         itemDiv.innerHTML = `
-            <div>${item.name} - ${item.price} SEK</div>
-            <div>
-                <button class="update-quantity" data-name="${item.name}" data-change="-1">-</button>
-                <span>${item.quantity} stycken</span> <!-- Visa antal varor -->
-                <button class="update-quantity" data-name="${item.name}" data-change="1">+</button>
+            <div class="item-details">
+                <div class="item-name">${item.name} - ${item.price} SEK</div>
+                <div class="quantity">
+                    <button class="update-quantity" data-name="${item.name}" data-change="-1">-</button>
+                    <span>${item.quantity} stycken</span> <!-- Visa antal varor -->
+                    <button class="update-quantity" data-name="${item.name}" data-change="1">+</button>
+                </div>
             </div>
         `;
         itemsContainer.appendChild(itemDiv);
     });
 
-    // Uppdatera totalpriset
-    totalPriceElement.textContent = `Total: ${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)} SEK`;
-
-    // Lägg till event listeners för plus- och minus-knappar
-    document.querySelectorAll('.update-quantity').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const name = event.target.getAttribute('data-name');
-            const change = parseInt(event.target.getAttribute('data-change'));
-            updateQuantity(name, change);
-        });
-    });
+    // Beräkna och visa totalpriset
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    totalPriceElement.textContent = `${totalPrice.toFixed(2)} SEK`; 
 }
 
-// Uppdatera kvantitet för en vara
+// Hämta plus- och minus knappar
+document.querySelectorAll('.update-quantity').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const name = event.target.getAttribute('data-name');
+        const change = parseInt(event.target.getAttribute('data-change'));
+        updateQuantity(name, change);
+    });
+});
+
 function updateQuantity(name, change) {
     const item = cart.find(item => item.name === name);
     if (item) {
-        item.quantity = Math.max(1, item.quantity + change);  // Undvik negativ kvantitet
-        renderCart(); // Uppdatera visningen
+        item.quantity = Math.max(1, item.quantity + change); 
+        renderCart(); 
     }
 }
 
-// Funktion för att visa orderbekräftelse
+// Funktion för att visa order
 function renderOrderConfirmation(responseData) {
     console.log("Orderbekräftelse:", responseData);
-    // Här kan du lägga till logik för att rendera bekräftelsen på UI:et.
+    
 }
 
-// Lyssna på klick på de fördefinierade knapparna för mat, dips och drycker
 document.querySelectorAll('.food-button').forEach(button => {
     const name = button.getAttribute('data-name');
     const price = parseFloat(button.getAttribute('data-price'));
 
     if (name && !isNaN(price)) {
         button.addEventListener('click', () => {
-            addItemToCart(name, price); // Lägg till artikel i kundvagnen
+            addItemToCart(name, price); 
         });
     } else {
         console.error("Ogiltiga data för varan:", name, price);
@@ -224,7 +218,7 @@ document.querySelectorAll('.dip-button').forEach(button => {
 
     if (name && !isNaN(price)) {
         button.addEventListener('click', () => {
-            addItemToCart(name, price); // Lägg till artikel i kundvagnen
+            addItemToCart(name, price); 
         });
     } else {
         console.error("Ogiltiga data för dip:", name, price);
@@ -237,23 +231,20 @@ document.querySelectorAll('.drink-button').forEach(button => {
 
     if (name && !isNaN(price)) {
         button.addEventListener('click', () => {
-            addItemToCart(name, price); // Lägg till artikel i kundvagnen
+            addItemToCart(name, price); 
         });
     } else {
         console.error("Ogiltiga data för dryck:", name, price);
     }
 });
 
-
 document.querySelector('.take-my-money').addEventListener('click', () => {
-    // Visa cta-sektionen
-    showSection('cta-section');  // Funktion för att visa rätt sektion
+    
+    showSection('cta-section');  
 
-    // Lägg till en klass på body för att ändra bakgrundsfärgen
     document.body.classList.add('cta-active');
-    document.body.classList.remove('menu-active'); // Se till att ta bort bakgrundsfärgen för menu
+    document.body.classList.remove('menu-active');
 
-    // Dölja alla andra sektioner
     const otherSections = document.querySelectorAll('section:not(#cta-section)');
     otherSections.forEach(section => {
         section.style.display = 'none';
@@ -262,21 +253,19 @@ document.querySelector('.take-my-money').addEventListener('click', () => {
 
 // Funktion för att visa en specifik sektion
 function showSection(sectionId) {
-    // Dölj alla sektioner
+    
     document.querySelectorAll('section').forEach(section => {
         section.style.display = 'none';
     });
 
-    // Visa den sektion som ska visas
     const section = document.getElementById(sectionId);
     if (section) {
         section.style.display = 'block';
     }
 
-    // Reset bakgrundsfärg när vi byter till menu
     if (sectionId === 'menu') {
         document.body.classList.add('menu-active');
-        document.body.classList.remove('cta-active'); // Ta bort bakgrund för CTA
+        document.body.classList.remove('cta-active'); 
     }
 }
 

@@ -1,7 +1,8 @@
 body
 {
-    background-color: #eceaea69;
+    background-color: rgba(72, 144, 120, 1);
 }
+
 
 .container
 {
@@ -78,7 +79,8 @@ body
     color: rgba(96, 88, 88, 1); 
 }
 
-.orange-circle {
+.orange-circle
+{
     position: absolute;
     width: 16px; 
     height: 16px;
@@ -88,7 +90,8 @@ body
     right: -4px;
 }
 
-.menu h2 {
+.menu h2
+{
     font-size: 2rem;
     text-align: center;
     color: white;
@@ -97,7 +100,8 @@ body
     top: 40px;
 }
 
-.menu {
+.menu
+{
     width: 100%;
     max-width: 800px;
     margin: 20px auto;
@@ -111,7 +115,8 @@ body
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1);
 } 
 
-.item {
+.item
+{
     width: 340px;
     height: 89px;
     padding: 16px 0px 0px 0px;
@@ -119,7 +124,8 @@ body
     opacity: 1px;
 }
 
-.food-button {
+.food-button
+{
     background-color: rgba(96, 88, 88, 1);
     color: #fff;
     border: none;
@@ -231,20 +237,23 @@ button:active
 
 
 /* order */
-.orderb {
+.orderb 
+{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background-color: rgba(238, 238, 238, 1);
     height: 100vh;
+    width: 100%;
 }
 
-.cart {
+.cart
+{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 16px;
-    width: 390px;
+    width: 358px;
     padding: 16px;
     border-radius: 8px;
     background-color: #f9f9f9;
@@ -254,39 +263,47 @@ button:active
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.items {
+.items
+{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 46px;
-    color: #333;
+    gap: 16px;
+    padding: 0 8px;
+    margin-top: 16px;
 }
 
-.order-item {
+.order-item
+{
     display: flex;
     flex-direction: column;
     padding: 12px 0;
-    align-items: flex-start; 
+    border-bottom: 1px solid #ddd;
+    align-items: center;
 }
 
-.order-item .item-name {
+.order-item .item-name
+{
     font-weight: bold;
     font-size: 16px;
     text-transform: uppercase;
     margin-bottom: 8px;
     color: #333;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
-.quantity {
+.quantity
+{
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 32px; 
+    justify-content: center;
 }
 
-.quantity button {
+.quantity button
+{
     background-color: #ddd;
     border: none;
     border-radius: 50%;
@@ -300,27 +317,33 @@ button:active
     transition: background-color 0.3s ease; 
 }
 
-.quantity button:hover {
+.quantity button:hover
+{
     background-color: #bbb;
 }
 
-.order-item .item-details {
+.order-item .item-details
+{
     display: flex;
     justify-content: space-between; 
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 
-.order-item .item-quantity {
+.order-item .item-quantity
+{
     font-size: 14px;
     color: #555;
 }
 
-.quantity {
+.quantity
+{
     align-items: center;
 }
 
-.quantity button {
+.quantity button
+{
     background-color: #eee;
     border: none;
     border-radius: 50%;
@@ -333,17 +356,20 @@ button:active
     font-size: 18px;
 }
 
-.quantity button:hover {
+.quantity button:hover
+{
     background-color: #ccc;
 }
 
-.item-price {
+.item-price
+{
     font-weight: bold;
     color: #ffffff;
     margin-left: auto;
 }
 
-.total {
+.total
+{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -368,27 +394,32 @@ button:active
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.total-title {
+.total-title
+{
     font-size: 25px;
 }
 
-.total-subtitle {
+.total-subtitle
+{
     font-size: 15px; 
 }
 
-.price {
+.price
+{
     font-size: 20px; 
     font-weight: bold;
 }
 
-.total-info {
+.total-info
+{
     display: flex;
     justify-content: space-between; 
     width: 100%; 
     font-size: 14px;
 }
 
-.take-my-money {
+.take-my-money
+{
     background-color: #605858;
     color: rgba(244, 243, 241, 0.94);
     padding: 24px;
@@ -402,7 +433,7 @@ button:active
     text-align: center;
     border-radius: 4px;
     position: relative;
-    top: 200px;
+    top: 180px;
     height: 120px;
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
@@ -492,22 +523,22 @@ background-color: (96, 88, 88, 1);
 
 .footer button
 {
-box-sizing: border-box;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 24px 16px;
-gap: 10px;
-width: 358px;
-height: 77px;
-opacity: 0.8;
-border: 2px solid rgba(244, 243, 241, 0.94);
-border-radius: 4px;
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+    gap: 10px;
+    width: 358px;
+    height: 77px;
+    opacity: 0.8;
+    border: 2px solid rgba(244, 243, 241, 0.94);
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
 .kvitto
@@ -567,6 +598,7 @@ flex-grow: 0;
     flex-grow: 0;
 }
 
+/* För ändrad färg / section */
 #cta-section {
     display: none;
 }
@@ -591,14 +623,29 @@ body.cta-active, .cta-section
 /* Media Query - Storskärm */
 @media (min-width: 1200px) 
 {
-    .container {
+    .container
+    {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
-    .menu {
+    .btn
+    {
+        position: relative;
+        left: 750px;
+        top: -10px;
+    }
+
+    .menu h2
+    {
+        position: relative;
+        left: -340px;
+    }
+
+    .menu
+    {
         width: 100%;
         margin: 40px auto;
         padding: 40px;
@@ -617,26 +664,31 @@ body.cta-active, .cta-section
         padding: 10px;
     }
 
-    .food-button {
+    .food-button
+    {
         width: 100%;
     }
 
-    .add-dip, .drink-button {
+    .add-dip, .drink-button
+    {
         width: auto;
         padding: 12px 15px;
         font-size: 16px;
     }
 
-    .name-price {
+    .name-price
+    {
         font-size: 24px;
         gap: 10px;
     }
 
-    .ingredients {
+    .ingredients
+    {
         font-size: 16px;
     }
 
-    .dips, .drinks {
+    .dips, .drinks
+    {
         
         width: 100%;
         gap: 30px;
@@ -646,13 +698,14 @@ body.cta-active, .cta-section
         
     }
 
-    
-    .frame10, .frame7 {
-        gap: 20px;
+    .frame10, .frame7
+    {
+        gap: 10px;
         justify-content: center;
     }
 
-    .name-price {
+    .name-price
+    {
         font-size: 24px;
         gap: 10px;
     }
