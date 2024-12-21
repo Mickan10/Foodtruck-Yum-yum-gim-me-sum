@@ -33,48 +33,49 @@ fetchMenuData();
 
 // Skicka beställning (POST) och returnera order-ID
 async function sendOrder() {
-        const itemsToOrder = cart.map(item => ({
-            id: Date.now(), 
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity
-        }));
+    const itemsToOrder = cart.map(item => ({
+        id: Date.now(),  // Dynamiskt ID baserat på timestamp för att undvika duplicering
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+    }));
 
-        const orderValue = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        const timestamp = new Date().toISOString();
-        const eta = new Date(new Date().getTime() + 30 * 60000).toISOString(); 
+    const orderValue = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const timestamp = new Date().toISOString();
+    const eta = new Date(new Date().getTime() + 30 * 60000).toISOString(); // Förväntad tid (30 minuter senare)
 
-        const orderData = {
-            description: "Beställning från kundvagnen",
-            items: itemsToOrder,
-            orderValue,
-            timestamp,
-            eta,
-            state: "waiting"
-        };
+    const orderData = {
+        description: "Beställning från kundvagnen",
+        items: itemsToOrder,
+        orderValue,
+        timestamp,
+        eta,
+        state: "waiting"
+    };
 
-        const options = {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "x-zocom": apiKey
-            },
-            body: JSON.stringify(orderData)
-        };
+    const options = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "x-zocom": apiKey
+        },
+        body: JSON.stringify(orderData)
+    };
 
-        const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/orders`, options);
-        const responseData = await response.json();
-        console.log("Beställning skickad:", responseData);
+    const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/orders`, options);
+    const responseData = await response.json();
+    console.log("Beställning skickad:", responseData);
 
-        // Förutsatt att order-ID finns i svar
-        if (responseData && responseData.id) {
-            const orderId = responseData.id;
-            console.log("Order-ID:", orderId);
-            
-            renderOrderId(responseData);
-        }
+    // Förutsatt att order-ID finns i svar
+    if (responseData && responseData.id) {
+        const orderId = responseData.id;
+        console.log("Order-ID:", orderId);
+        
+        renderOrderId(responseData);
+    }
 }
 
+// Hämta beställningar för en specifik tenant (GET)
 async function fetchOrders() {
     try {
         const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenant.id}/orders`, {
@@ -99,7 +100,8 @@ async function fetchOrders() {
 
 // Hämta orderdata med ett specifikt ID (GET)
 async function fetchOrderById(orderId) {
-        const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/tdfe/orders/${orderId}`, {
+    try {
+        const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenant.id}/orders/${orderId}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -110,13 +112,17 @@ async function fetchOrderById(orderId) {
         const responseData = await response.json();
 
         if (response.ok) {
-            console.log(responseData);
+            console.log("Orderdata:", responseData);
             renderOrderId(responseData); 
         } else {
             console.error("Fel vid hämtning av orderdata:", responseData);
         }
+    } catch (error) {
+        console.error("Nätverks- eller API-fel:", error);
+    }
 }
 
+// Funktion för att rendera Order-ID i DOM
 function renderOrderId(orderData) {
     const orderIdSpan = document.querySelector('.OrderId');
     
@@ -125,14 +131,20 @@ function renderOrderId(orderData) {
         return;
     }
 
+    // Kontrollera om vi får en lista med orderobjekt eller ett enskilt orderobjekt
     if (orderData.orders && orderData.orders.length > 0) {
-        const firstOrderId = orderData.orders[0].id;
-        orderIdSpan.textContent = `#${firstOrderId}`; // Uppdatera textinnehållet
+        const firstOrderId = orderData.orders[0].id;  // Hämtar första order-ID:t från listan
+        orderIdSpan.textContent = `#${firstOrderId}`; // Uppdatera textinnehållet med order-ID
         console.log("Första order-ID renderat:", firstOrderId);
+    } else if (orderData.id) {
+        // Om vi får en specifik order med ett order-ID
+        orderIdSpan.textContent = `#${orderData.id}`;  // Rendera det enskilda order-ID:t
+        console.log("Order-ID renderat:", orderData.id);
     } else {
         console.error('Inga beställningar hittades i orderData:', orderData);
     }
 }
+
 // Hitta menyobjekt baserat på namn
 function getMenuItemByName(name, foodData, drinkData, dipData) {
     const allMenuItems = [...foodData, ...drinkData, ...dipData]; 
