@@ -1,3 +1,4 @@
+
 const apiKey = "yum-vKkkQHqQboi7c6JF";
 const apiUrl = "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu";
 const tenant = {
@@ -135,7 +136,7 @@ function renderOrderId(orderData) {
 // Hitta menyobjekt baserat på namn
 function getMenuItemByName(name, foodData, drinkData, dipData) {
     const allMenuItems = [...foodData, ...drinkData, ...dipData]; 
-    return allMenuItems.find(item => item.name === name) || {}; // Returnera objektet eller ett tomt objekt om ej hittat
+    return allMenuItems.find(item => item.name === name) || {};
 }
 
 // Lägg till vara i kundvagnen
@@ -154,16 +155,18 @@ function renderCart() {
     const totalPriceElement = document.querySelector('.total .price');
     itemsContainer.innerHTML = ''; 
 
-    // gå igenom alla varor i kundvagnen
     cart.forEach(item => {
         const itemDiv = document.createElement('div');
-        itemDiv.classList.add('order-item');
+        itemDiv.classList.add('order-items');
         itemDiv.innerHTML = `
-            <div class="item-details">
-                <div class="item-name">${item.name} - ${item.price} SEK</div>
+            <div class="items-details">
+                <div class="items-header">
+                    <div class="items-name">${item.name}</div>
+                    <div class="items-price">${item.price} SEK</div>
+                </div>
                 <div class="quantity">
                     <button class="update-quantity" data-name="${item.name}" data-change="-1">-</button>
-                    <span>${item.quantity} stycken</span> <!-- Visa antal varor -->
+                    <span>${item.quantity} stycken</span>
                     <button class="update-quantity" data-name="${item.name}" data-change="1">+</button>
                 </div>
             </div>
@@ -177,12 +180,12 @@ function renderCart() {
 }
 
 // Hämta plus- och minus knappar
-document.querySelectorAll('.update-quantity').forEach(button => {
-    button.addEventListener('click', (event) => {
+document.querySelector('.items').addEventListener('click', (event) => {
+    if (event.target.classList.contains('update-quantity')) {
         const name = event.target.getAttribute('data-name');
         const change = parseInt(event.target.getAttribute('data-change'));
         updateQuantity(name, change);
-    });
+    }
 });
 
 function updateQuantity(name, change) {
@@ -289,5 +292,12 @@ kvittoButton.addEventListener('click', () => {
     setTimeout(() => {
         errorMessage.style.display = 'none';
     }, 3000);
+});
+
+//tömma varukorgen
+document.querySelector('#newOrderButton').addEventListener('click', () => {
+    cart = [];
+    renderCart();
+    showSection('menu'); 
 });
 
