@@ -8,6 +8,16 @@ const tenant = {
 
 let cart = [];
 
+// uppdatera antalet i den orangea cirkeln
+function updateCartCount() {
+    const cartCountElement = document.querySelector('.orange-circle');
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (cartCountElement) {
+        cartCountElement.textContent = totalQuantity > 0 ? totalQuantity : ''; // Visar inget om det är 0
+    }
+}
+
 // Fetch menydata (GET)
 async function fetchMenuData() {
         const options = {
@@ -34,7 +44,7 @@ fetchMenuData();
 // Skicka beställning (POST) och returnera order-ID
 async function sendOrder() {
     const itemsToOrder = cart.map(item => ({
-        id: Date.now(),  // Dynamiskt ID baserat på timestamp för att undvika duplicering
+        id: Date.now(),
         name: item.name,
         price: item.price,
         quantity: item.quantity
@@ -42,7 +52,7 @@ async function sendOrder() {
 
     const orderValue = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const timestamp = new Date().toISOString();
-    const eta = new Date(new Date().getTime() + 30 * 60000).toISOString(); // Förväntad tid (30 minuter senare)
+    const eta = new Date(new Date().getTime() + 30 * 60000).toISOString(); 
 
     const orderData = {
         description: "Beställning från kundvagnen",
@@ -138,7 +148,7 @@ function renderOrderId(orderData) {
         console.log("Första order-ID renderat:", firstOrderId);
     } else if (orderData.id) {
         // Om vi får en specifik order med ett order-ID
-        orderIdSpan.textContent = `#${orderData.id}`;  // Rendera det enskilda order-ID:t
+        orderIdSpan.textContent = `#${orderData.id}`;
         console.log("Order-ID renderat:", orderData.id);
     } else {
         console.error('Inga beställningar hittades i orderData:', orderData);
@@ -159,7 +169,8 @@ function addItemToCart(name, price) {
     } else {
         cart.push({ name, price, quantity: 1 }); 
     }
-    renderCart(); 
+    renderCart();
+    updateCartCount(); // Uppdatera antalet i den orangea cirkeln 
 }
 
 function renderCart() {
@@ -200,11 +211,19 @@ document.querySelector('.items').addEventListener('click', (event) => {
     }
 });
 
+//funktion som tar bort produkt vid +-
 function updateQuantity(name, change) {
-    const item = cart.find(item => item.name === name);
-    if (item) {
-        item.quantity = Math.max(1, item.quantity + change); 
-        renderCart(); 
+    const itemIndex = cart.findIndex(item => item.name === name);
+    if (itemIndex !== -1) {
+        const item = cart[itemIndex];
+        item.quantity += change;
+
+        if (item.quantity <= 0) {
+            cart.splice(itemIndex, 1);
+        }
+        
+        renderCart();
+        updateCartCount();
     }
 }
 
@@ -253,6 +272,7 @@ document.querySelectorAll('.drink-button').forEach(button => {
     }
 });
 
+//knapp - take my money
 document.querySelector('.take-my-money').addEventListener('click', () => {
     
     showSection('cta-section');  
@@ -310,6 +330,8 @@ kvittoButton.addEventListener('click', () => {
 document.querySelector('#newOrderButton').addEventListener('click', () => {
     cart = [];
     renderCart();
+    updateCartCount(); 
     showSection('menu'); 
 });
 
+updateCartCount();
